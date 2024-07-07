@@ -31,6 +31,34 @@
             return parent::store($_fillables);
         }
 
+        public function getAll($params = []) {
+            $where = null;
+            $order = null;
+            $limit = null;
+
+            if(!empty($params['where'])) {
+                $where = " WHERE " . parent::conditionConvert($params['where']);
+            }
+
+            if(!empty($params['order'])) {
+                $order = " ORDER BY " . $params['order'];
+            }
+
+            if(!empty($params['limit'])) {
+                $limit = " LIMIT " . $params['limit'];
+            }
+
+            $this->db->query(
+                "SELECT lg.*, item.name as item_name,
+                    item.sku as item_sku 
+                    FROM {$this->table} as lg
+                    LEFT JOIN items as item 
+                        on lg.item_id = item.id
+                    {$where} {$order} {$limit}"
+            );
+
+            return $this->db->resultSet();
+        }
         private function _convertQuantity($entryData) {
             $quantity = $entryData['quantity'];
             if ($entryData['quantity'] <= 0) {

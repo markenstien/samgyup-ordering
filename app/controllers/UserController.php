@@ -28,7 +28,6 @@
 			}else{
 				$this->data['users'] = $this->model->getAll( );
 			}
-			
 
 			return $this->view('user/index' , $this->data);
 		}
@@ -38,6 +37,7 @@
 			_requireAuth();
 			if(isSubmitted()) {
 				$post = request()->posts();
+
 				$user_id = $this->model->create($post , 'profile');
 				if(!$user_id){
 					Flash::set( $this->model->getErrorString() , 'danger');
@@ -54,6 +54,7 @@
 				return redirect( _route('user:show' , $user_id , ['user_id' => $user_id]) );
 			}
 			$this->data['user_form'] = new UserForm('userForm');
+			$this->data['daysoftheweek'] = dayOfWeeks();
 
 			return $this->view('user/create' , $this->data);
 		}
@@ -63,9 +64,9 @@
 			_requireAuth();
 			if(isSubmitted()) {
 				$post = request()->posts();
-
+				// dd($post);
 				$res = $this->model->update($post , $post['id']);
-
+				
 				if($res) {
 					Flash::set( $this->model->getMessageString());
 					return redirect( _route('user:show' , $id) );
@@ -96,6 +97,10 @@
 					'label' => 'Password'
 				]
 			]);
+
+			// dump($user);
+
+			$this->data['daysoftheweek'] = dayOfWeeks();
 
 			if(!isEqual(whoIs('user_type'), 'admin'))
 				$this->data['user_form']->remove('user_type');

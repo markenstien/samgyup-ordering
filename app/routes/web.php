@@ -276,7 +276,20 @@
 		'set-occupied' => 'setOccupied',
 		'set-available' => 'setAvailable',
 		'set-reserved' => 'setReserved',
-		'show-order'  => 'showOrder'
+		'show-order'  => 'showOrder',
+		'add-order'  => 'addOrder'
+	]);
+
+	_routeInstance('request-item', 'RequestItemController', $routes,[
+		'add-item' => 'addItem',
+		'complete-one' => 'completeOne',
+		'remove-one' => 'removeOne'
+	]);
+
+	_routeInstance('attendance', 'AttendanceController', $routes, [
+		'approval' => 'approval',
+		'logged-in' => 'loggedIn',
+		'log' => 'log'
 	]);
 	return $routes;
 ?>

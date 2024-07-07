@@ -38,6 +38,11 @@
             $tables = $this->tableModel->all(null, 'FIELD(table_unit_status, "available", "reserved", "occupied"), table_unit_number asc');
 
             if(!empty($req['tableNumber']) && (!empty($req['action']) && isEqual($req['action'], 'assign-table'))) {
+
+                if(isEqual($order->order_status, 'complete')) {
+                    Flash::set("Action failed order already complete");
+                    return request()->return();
+                }
                 /**
                  * assign table action
                  * update table to occupied
@@ -97,7 +102,8 @@
 
             $tables = $this->tableModel->all(null, 'FIELD(table_unit_status, "available", "reserved", "occupied"), table_unit_number asc');
             $waitingOrders = $this->model->all([
-                'table_number_id' => '0'
+                'table_number_id' => '0',
+                'order_status' => 'pending'
             ]);
 
             $this->data = [

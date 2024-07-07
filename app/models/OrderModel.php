@@ -59,7 +59,8 @@
             $orderData['staff_id'] = whoIs('id');
             $orderData['is_paid'] = false;
             $orderData['table_number_id'] = 0;
-            
+            $orderData['order_status'] = 'on-going';
+
             $orderDataUpdate = parent::update($orderData, $orderData['id']);
 
             $paymentId = $this->payment->createOrUpdate([
@@ -68,13 +69,26 @@
             ]);
             $this->payment->approve($paymentId);
 
+            if(!isset($this->requestItemModel)) {
+                $this->requestItemModel = model('RequestItemModel');
+            }
+
             if($orderDataUpdate && $paymentId) {
                 $this->addMessage("Order and payment saved");
                 //remove stocks
                 $items = $this->item->getOrderItems($orderData['id']);
-
+                
                 foreach ($items as $key => $row) {
-                    $this->item->deductStock($row->item_id, $row->quantity);
+                    // $this->item->deductStock($row->item_id, $row->quantity);
+
+                    //add items on request item to alert the servers about the order
+                    $this->requestItemModel->addItem([
+                        'order_id' => $orderData['id'],
+                        'item_id' => $row->item_id,
+                        'quantity' => $row->quantity,
+                        'price' => $row->price,
+                        'payment_status' => 'paid'
+                    ]);
                 }
 
                 $message = " New Order has been placed as of " . now();
@@ -142,5 +156,45 @@
             ], $id);
 
             return $result;
+        }
+
+        public function refreshOrder($orderId) {
+            $order = $this->getComplete($orderId);
+
+            if(!$order) {
+                $this->addMessage("unable to refresh order");
+                return false;
+            }
+
+            $orderItems = $order['items'];
+            $payment = $order['payment'];
+            $orderdata = $order['order'];
+
+            if(!isset($this->orderItemModel)) {
+                $this->orderItemModel = model('OrderItemModel');
+            }
+
+            $items = $this->orderItemModel->getOrderItems($orderId);
+
+            $totalOrderAmount = 0;
+            foreach($orderItems as $key => $row) {
+                $totalOrderAmount += $row->sold_price;
+            }
+            
+            /**
+             * match order and order item total
+             * if not match then set order to default 
+             */
+
+             if($totalOrderAmount != $orderdata->net_amount) {
+                $this->addMessage("Order Updated");
+                //set order to default
+                return parent::update([
+                    'net_amount' => $totalOrderAmount,
+                    'gross_amount' => $totalOrderAmount,
+                    'is_paid' => false
+                ], $orderId);
+             }
+             return true;
         }
     }

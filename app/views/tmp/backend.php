@@ -30,7 +30,7 @@
 <!-- endinject -->
 
 <!-- Layout styles -->  
-<link rel="stylesheet" href="<?php echo _path_tmp('main-tmp/assets/css/demo3/style.css')?>">
+<link rel="stylesheet" href="<?php echo _path_tmp('main-tmp/assets/css/demo4/style.css')?>">
 <!-- End layout styles -->
 
 <link rel="shortcut icon" href="<?php echo _path_tmp('main-tmp/assets/images/favicon.png')?>" />
@@ -54,6 +54,10 @@
 
   .box-table-sm-occupied {
     background-color: blue;
+  }
+  
+  .box-table-sm-selected {
+    background-color: orangered;
   }
 </style>
   

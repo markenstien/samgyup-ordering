@@ -11,6 +11,7 @@
                 <table class="table table-bordered">
                     <thead>
                         <th>#</th>
+                        <th>Item</th>
                         <th>Quantity</th>
                         <th>Remarks</th>
                         <th>Origin</th>
@@ -21,6 +22,7 @@
                         <?php foreach($logs as $key => $row) :?>
                             <tr>
                                 <td><?php echo ++$key?></td>
+                                <td><?php echo $row->item_name?></td>
                                 <td><?php echo amountHTML($row->quantity) ?></td>
                                 <td><?php echo $row->remarks?></td>
                                 <td><?php echo $row->entry_origin?></td>

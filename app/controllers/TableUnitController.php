@@ -57,15 +57,18 @@
             return $this->view('table_units/edit', $this->data);
         }
 
-        public function setOccupied() {
-
+        public function setOccupied($id) {
+            $this->model->setOccupied($id);
+            return request()->return();
         }
         
-        public function setAvailable() {
-
+        public function setAvailable($id) {
+            $this->model->setAvailable($id);
+            return request()->return();
         }
 
-        public function setReserved() {
-
+        public function setReserved($id) {
+            $this->model->setReserve($id);
+            return request()->return();
         }
     }

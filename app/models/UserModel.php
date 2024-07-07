@@ -20,7 +20,9 @@
 			'created_at',
 			'created_by',
 			'user_type',
-			'profile'
+			'user_access',
+			'profile',
+			'salary_per_hour'
 		];
 
 
@@ -89,7 +91,7 @@
 				</div>
 			EOF;
 
-			_mail($user->email, 'User Credential' , $message);
+			_mail($user->email, 'User Credential' , $body);
 		}
 
 		private function validate($user_data , $id = null)
@@ -97,7 +99,6 @@
 			if(!empty($user_data['email']))
 			{
 				$is_exist = $this->getByKey('email' , $user_data['email'])[0] ?? '';
-
 				if( $is_exist && !isEqual($is_exist->id , $id) ){
 					$this->addError("Email {$user_data['email']} already used");
 					return false;
@@ -165,7 +166,9 @@
 
 			if($res) {
 				$this->addMessage("Profile uploaded!");
-				$this->startAuth($id);
+				if(isEqual(whoIs('id'), $id)) {
+					$this->startAuth($id);
+				}
 				return true;
 			}
 			$this->addError("UPLOAD PROFILE DATABASE ERROR");

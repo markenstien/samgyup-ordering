@@ -47,7 +47,9 @@
             if (isset($request['item_id'])) {
                 $logs = $this->model->getProductLogs($request['item_id']);
             } else {
-                $logs = $this->model->all(null,'id desc');
+                $logs = $this->model->getAll([
+                    'order' => 'lg.id desc'
+                ]);
             }
 
             $this->data['logs'] = $logs;

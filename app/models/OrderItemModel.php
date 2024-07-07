@@ -42,8 +42,12 @@
             
             if(is_null($id)) {
                 $purchaseSession = OrderService::getPurchaseSession('cashier');
-
-                if (empty($purchaseSession)) {
+                /**
+                 * if order_id is assiged then use it as order_id
+                 */
+                if(!empty($orderItemRawData['order_id'])) {
+                    $order_id = $orderItemRawData['order_id'];
+                } else if(empty($purchaseSession)) {
                     $purchaseSession = OrderService::startPurchaseSession('cashier');
                     $order_id = $this->order->start($purchaseSession, $orderItemRawData['staff_id'] ?? '', $orderItemRawData['customer_id'] ?? '');
                 } else {

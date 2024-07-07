@@ -22,9 +22,9 @@
 		}
 
 		private function requireTerms() {
-			if(!isEqual(Cookie::get('terms'), 'agreed')) {
-				return redirect(_route('home:terms'));
-			}
+			// if(!isEqual(Cookie::get('terms'), 'agreed')) {
+			// 	return redirect(_route('home:terms'));
+			// }
 		}
 		public function index(){
 			$this->requireTerms();

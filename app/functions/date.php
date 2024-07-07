@@ -18,6 +18,64 @@
     //     return $diff . " " . $strTime[$i] . "(s) ago ";
     //    }
     // }
+
+    function minutesToHours($minutes , $seperator = null)
+    {
+        $hours = floor($minutes / 60) ;
+
+        $remainingMinutes = $minutes % 60;
+
+        if(!is_null($seperator))
+            return "{$hours}{$seperator}{$remainingMinutes}";
+        
+        return "{$hours}H {$remainingMinutes}m";
+    }
+    
+    function dayOfWeeks($position = null)
+    {
+        $days = [
+            'sunday',
+            'monday',
+            'tuesday',
+            'wednesday',
+            'thursday',
+            'friday',
+            'saturday'
+        ];
+
+        if(is_null($position))
+            return $days;
+        
+        return $days[$position];
+    }
+
+    function dateDifferenceInMinutes($startDateTime, $endDateTime) {
+
+        $start_datetime = new DateTime($startDateTime); 
+        $diff = $start_datetime->diff(new DateTime($endDateTime)); 
+
+        $total_minutes = ($diff->days * 24 * 60); 
+        $total_minutes += ($diff->h * 60); 
+        $total_minutes += $diff->i; 
+
+        return $total_minutes;
+    }
+
+    function timeDifferenceInMinutes($startime , $endtime)
+    {
+        $time_in   = date_create($startime);
+        $time_out  = date_create($endtime);
+        $time_diff = date_diff($time_in,$time_out);
+
+
+        $hour    = (int) $time_diff->format('%h');
+        $minutes = (int) $time_diff->format('%i');
+
+        if($hour)
+            $hour = floor($hour * 60);
+
+        return $hour + $minutes;
+    }
     
     function nowMilitary()
     {

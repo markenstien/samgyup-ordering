@@ -206,6 +206,15 @@
 			EOF;
 		}
 
+		public static function radio($name , $value = null, $attributes = null)
+		{
+			$attributes = is_null($attributes) ? $attributes : keypairtostr($attributes);
+
+			print <<<EOF
+				<input type="radio" name="{$name}" value="{$value}" {$attributes} />
+			EOF;
+		}
+
 		public static function submit($name , $value = null , $attributes = null)
 		{
 			if(is_null($attributes))
