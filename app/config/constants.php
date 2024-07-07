@@ -7,12 +7,12 @@
     define('DEFAULT_REPLY_TO' , '');
 
     const MAILER_AUTH = [
-        'username' => 'cx@hotplate.one',
-        'password' => 'zK9!0*#IDO7z',
-        'host'     => 'hotplate.one',
-        'name'     => 'Hotplate',
-        'replyTo'  => 'cx@hotplate.one',
-        'replyToName' => 'Hotplate'
+        'username' => 'support@dailygrill.store',
+        'password' => 'M$etwtjVpnV7',
+        'host'     => 'dailygrill.store',
+        'name'     => 'dailygrill',
+        'replyTo'  => 'support@dailygrill.store',
+        'replyToName' => 'support@dailygrill.store'
     ];
 
 
@@ -34,7 +34,7 @@
     define('COMPANY_NAME' , 'Daily Grill');
 
     define('COMPANY_NAME_ABBR', 'Daily Grill');
-    define('COMPANY_EMAIL', 'main@hotplate.store');
+    define('COMPANY_EMAIL', 'support@dailygrill.store');
     define('COMPANY_TEL', '+');
     define('COMPANY_ADDRESS', ' ');
 
