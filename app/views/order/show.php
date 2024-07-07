@@ -3,7 +3,7 @@
     <div class="col-md-3">
         <div class="card">
             <div class="card-body">
-                <h5>ASsign Table</h5>
+                <h5>Assign Table</h5>
                 <?php foreach($tables as $key => $row) :?>
                     <?php echo wTableContent($row->table_unit_number, $row->id, $row->table_unit_status, _route('order:show', $order->id, [
                         'tableNumber' => $row->id,
@@ -22,6 +22,7 @@
                             <h5>ORDER DETAILS : <?php echo $order->customer_name?></h5>
                             <small><?php echo $order->reference?></small>
                         </div>
+
                         <div class="col-md-9" style="text-align: right;">
                             <a href="<?php echo _route('order:void-order', $order->id)?>" class="btn btn-primary btn-danger">Cancel</a> &nbsp;
                             <a href="<?php echo _route('order:complete', $order->id)?>" class="btn btn-primary btn-success">Complete</a> &nbsp;
@@ -31,6 +32,26 @@
                     <?php
                         $totalAmountOrder = 0;
                     ?>
+
+                    <?php if($order->is_paid) :?>
+                        <div class="text-center alert alert-success">
+                            <h4>Paid Order</h4>
+                        </div>
+                    <?php else :?>
+                        <div class="text-center alert alert-danger">
+                            <h4>Un Paid</h4>
+                        </div>
+                    <?php endif?>
+
+                    <?php if(isEqual($order->order_status, 'completed')) :?>
+                        <div class="text-center alert alert-success">
+                            <h4>Order Complete</h4>
+                        </div>
+                    <?php else :?>
+                        <div class="text-center alert alert-danger">
+                            <h4><?php echo strtoupper($order->order_status) ?></h4>
+                        </div>
+                    <?php endif?>
 
                     <h4>Particulars</h4>
                     <div class="table-responsive">

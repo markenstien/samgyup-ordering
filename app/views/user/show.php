@@ -12,7 +12,6 @@
 
 				<div class="card-body">
 					<div><img src="<?php echo $user->profile?>" style="width: 150px;"></div>
-					<span class="badge badge-primary">USERID : #<?php echo $user->user_identification?></span>
 					<div class="table-responsive">
 						<table class="table table-bordered">
 							<tr>

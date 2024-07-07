@@ -1,24 +1,22 @@
 <?php build('content')?>
 <!-- Start Banner Hero -->
-<div class="container-xxl">
-    <div class="container-xxl py-5 bg-dark hero-header mb-5">
-        <div class="container my-5 py-5">
-            <div class="row align-items-center g-5">
-                <div class="col-lg-6 text-center text-lg-start">
-                    <h1 class="display-3 text-white animated slideInLeft">Enjoy Our<br>Delicious Meal</h1>
-                    <p class="text-white animated slideInLeft mb-4 pb-2">Fulfill your comfort food cravings.</p>
-                    <a href="<?php echo _route('home:reservation')?>" class="btn btn-primary py-sm-3 px-sm-5 me-3 animated slideInLeft">Book A Table</a>
-                </div>
-                <div class="col-lg-6 text-center text-lg-end overflow-hidden">
-                    <img class="img-fluid" src="img/hero.png" alt="">
-                </div>
-            </div>
-        </div>
+<section id="home" class="parallax-section">
+    <!-- <div class="gradient-overlay"></div> -->
+    <div class="image-overlay"></div>
+    <div></div>
+    <div class="container">
+      <div class="row">
+          <div class="col-md-offset-2 col-md-8 col-sm-12">
+              <h1 class="wow fadeInUp" data-wow-delay="0.6s"><?php echo COMPANY_NAME?></h1>
+              <p class="wow fadeInUp" data-wow-delay="1.0s"><?php echo COMPANY_LINES['SUB_TITLE']?></p>
+              <a href="#feature" class="wow fadeInUp btn btn-default hvr-bounce-to-top smoothScroll" data-wow-delay="1.3s">Discover Now</a>
+          </div>
+      </div>
     </div>
-</div>
+</section>
 
 <!-- Products -->
-<div class="container-xxl py-5">
+<div class="container-xxl py-5" style="display: none;">
 	<div class="container">
 		<div class="row g-4">
 			<?php foreach($products as $key => $row) :?>
@@ -45,7 +43,7 @@
 <!-- Products End -->
 
 <!-- Team Start -->
-<div class="container-xxl pt-5 pb-3">
+<div class="container-xxl pt-5 pb-3" style="display: none;">
 		<div class="container">
 			<div class="text-center wow fadeInUp" data-wow-delay="0.1s">
 				<h5 class="section-title ff-secondary text-center text-primary fw-normal">Team Members</h5>
@@ -136,46 +134,6 @@
 		<i class="fas fa-chevron-right"></i>
 	</a>
 </div>
-<!-- End Banner Hero -->
-
-<!-- Start Contact -->
-<!-- <div class="container">
-    <div class="row py-5">
-		<div class="col-md-6 m-auto text-center">
-			<h1 class="h1">Contact Us</h1>
-		</div>
-        <form class="col-md-9 m-auto" method="post" role="form">
-            <div class="row">
-                <div class="form-group col-md-6 mb-3">
-                    <label for="inputname">Name</label>
-                    <input type="text" class="form-control mt-1" id="name" name="name" placeholder="Name" required>
-                </div>
-                <div class="form-group col-md-6 mb-3">
-                    <label for="inputemail">Email</label>
-                    <input type="email" class="form-control mt-1" id="email" name="email" placeholder="Email" required>
-                </div>
-            </div>
-            <div class="mb-3">
-                <label for="inputsubject">Subject</label>
-                <input type="text" class="form-control mt-1" id="subject" name="subject" placeholder="Subject" required>
-            </div>
-            <div class="mb-3">
-                <label for="inputmessage">Message</label>
-                <textarea class="form-control mt-1" id="message" name="message" placeholder="Message" rows="8" required></textarea>
-            </div>
-            <div class="row">
-                <div class="col text-end mt-2">
-                    <button type="submit" name="btn_contact" value="btn_contact" class="btn btn-success btn-lg px-3">Let’s Talk</button>
-                </div>
-            </div>
-        </form>
-    </div>
-</div> -->
-
-<!-- End Section -->
-
-
-<!-- End Featured Product -->
 <?php endbuild()?>
 
 <?php loadTo('tmp/landing')?>

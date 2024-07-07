@@ -119,7 +119,6 @@
 					'customer_id' => whoIs('id'),
 					'reference' => $order->reference
                 ];
-				
                 $orderResponse = $this->modelOrder->placeAndPay($orderData, null);
                 if($orderResponse) {
 					$itemsList = "";

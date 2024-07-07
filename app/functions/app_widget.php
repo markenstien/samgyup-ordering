@@ -198,6 +198,10 @@
             case 'reserved':
                 $boxColor = 'box-table-sm-reserved';
             break;
+
+            default:
+                $boxColor = 'box-table-sm-selected';
+            break;
         }
         return <<<EOF
             <div style='cursor:pointer' class='box-table box-table-sm {$boxColor}' 
@@ -207,6 +211,21 @@
             data-status = "{$status}"
             title="{$status}">
                 <h2>{$tableNumber}</h2>
+            </div>
+        EOF;
+    }
+
+    function wCardTitle($title) {
+        return <<<EOF
+            <h6 class='m-0 font-weight-bold'>{$title}</h6>
+        EOF;
+    }
+
+    function wCardHeader($content) {
+        return <<<EOF
+            <div class="card-header py-3" style="background-color:#0D0CB5;
+                color:#fff">
+                {$content}
             </div>
         EOF;
     }

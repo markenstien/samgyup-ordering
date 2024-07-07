@@ -4,7 +4,7 @@
 
     function wEmailHeader()
     {
-        $logo = _path_upload_get('hotpotlogo.png');
+        $logo = _path_upload_get('images/grill_logo.png');
 
         $COMPANY_NAME = COMPANY_NAME;
 
@@ -22,7 +22,7 @@
     
     function wEmailFooter()
     {
-        $logo = _path_upload_get('hotpotlogo.png');
+        $logo = _path_upload_get('images/grill_logo.png');
 
         $COMPANY_NAME = COMPANY_NAME;
 

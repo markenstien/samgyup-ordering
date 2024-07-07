@@ -1,696 +1,585 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="utf-8">
-    <title><?php echo $page_title ?? COMPANY_NAME?></title>
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <meta content="" name="keywords">
-    <meta content="" name="description">
 
-    <!-- Favicon -->
-    <link href="img/favicon.ico" rel="icon">
+	<title><?php echo $page_title ?? COMPANY_NAME?></title>
+  	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="keywords" content="">
+  	<meta name="description" content="">
 
-    <!-- Google Web Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600&family=Nunito:wght@600;700;800&family=Pacifico&display=swap" rel="stylesheet">
+	<!-- stylesheets css -->
+	<link rel="stylesheet" href="<?php echo _path_tmp('steak-house/css/bootstrap.min.css')?>">
 
-    <!-- Icon Font Stylesheet -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+  	<link rel="stylesheet" href="<?php echo _path_tmp('steak-house/css/magnific-popup.css')?>">
 
-    <!-- Libraries Stylesheet -->
-    <link href="<?php echo _path_tmp('landing-resto/lib/animate/animate.min.css')?>" rel="stylesheet">
-    
-    <link href="<?php echo _path_tmp('landing-resto/lib/owlcarousel/assets/owl.carousel.min.css')?>" rel="stylesheet">
-    <link href="<?php echo _path_tmp('landing-resto/lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css')?>" rel="stylesheet" />
+	<link rel="stylesheet" href="<?php echo _path_tmp('steak-house/css/animate.min.css')?>">
+	<link rel="stylesheet" href="<?php echo _path_tmp('steak-house/css/font-awesome.min.css')?>">
 
-    <!-- Customized Bootstrap Stylesheet -->
-    <link href="<?php echo _path_tmp('landing-resto/css/bootstrap.min.css')?>" rel="stylesheet">
+  	<link rel="stylesheet" href="<?php echo _path_tmp('steak-house/css/nivo-lightbox.css')?>">
+  	<link rel="stylesheet" href="<?php echo _path_tmp('steak-house/css/nivo_themes/default/default.css')?>">
 
-    <!-- Template Stylesheet -->
-    <link href="<?php echo _path_tmp('landing-resto/css/style.css')?>" rel="stylesheet">
-    <?php produce('headers')?>
-    <?php produce('styles')?>
+  	<link rel="stylesheet" href="<?php echo _path_tmp('steak-house/css/hover-min.css')?>">
+  	<link rel="stylesheet" href="<?php echo _path_tmp('steak-house/css/flexslider.css')?>">
+
+	<link rel="stylesheet" href="<?php echo _path_tmp('steak-house/css/style.css')?>">
+
+  	<link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+  	<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,600' rel='stylesheet' type='text/css'>
+
+    <style>
+        .image-overlay {
+            background: url("<?php echo _path_upload_get('images/coveradarken.jpg')?>");
+            background-size: cover;
+            background-position: center;
+            background-blend-mode: multiply;
+            position: absolute;
+            top: 0;
+            width: 100%;
+            height: 100vh;
+        }
+    </style>
 </head>
+<body id="top" data-spy="scroll" data-target=".navbar-collapse" data-offset="50">
 
-<body>
-    <div class="container-xxl bg-white p-0">
-        <!-- Spinner Start -->
-        <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
-            <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
-                <span class="sr-only">Loading...</span>
-            </div>
-        </div>
-        <!-- Spinner End -->
-        <!-- Navbar & Hero Start -->
-        <?php grab('tmp/includes/navigation')?>
-        <!-- Navbar & Hero End -->
+<!-- Preloader section -->
+<!-- <div class="preloader">
+	<div class="sk-spinner sk-spinner-pulse"></div>
+</div> -->
 
-        <?php echo produce('content') ?>
+<!-- Navigation section -->
+<div class="navbar navbar-default navbar-static-top" role="navigation">
+  <div class="container">
 
-        <!-- Service Start -->
-        <div class="container-xxl py-5" style="display: none;">
-            <div class="container">
-                <div class="row g-4">
-                    <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
-                        <div class="service-item rounded pt-3">
-                            <div class="p-4">
-                                <i class="fa fa-3x fa-user-tie text-primary mb-4"></i>
-                                <h5>Master Chefs</h5>
-                                <p>Diam elitr kasd sed at elitr sed ipsum justo dolor sed clita amet diam</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.3s">
-                        <div class="service-item rounded pt-3">
-                            <div class="p-4">
-                                <i class="fa fa-3x fa-utensils text-primary mb-4"></i>
-                                <h5>Quality Food</h5>
-                                <p>Diam elitr kasd sed at elitr sed ipsum justo dolor sed clita amet diam</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.5s">
-                        <div class="service-item rounded pt-3">
-                            <div class="p-4">
-                                <i class="fa fa-3x fa-cart-plus text-primary mb-4"></i>
-                                <h5>Online Order</h5>
-                                <p>Diam elitr kasd sed at elitr sed ipsum justo dolor sed clita amet diam</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.7s">
-                        <div class="service-item rounded pt-3">
-                            <div class="p-4">
-                                <i class="fa fa-3x fa-headset text-primary mb-4"></i>
-                                <h5>24/7 Service</h5>
-                                <p>Diam elitr kasd sed at elitr sed ipsum justo dolor sed clita amet diam</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Service End -->
-
-
-        <!-- About Start -->
-        <div class="container-xxl py-5"  style="display: none;">>
-            <div class="container">
-                <div class="row g-5 align-items-center">
-                    <div class="col-lg-6">
-                        <div class="row g-3">
-                            <div class="col-6 text-start">
-                                <img class="img-fluid rounded w-100 wow zoomIn" data-wow-delay="0.1s" src="img/about-1.jpg">
-                            </div>
-                            <div class="col-6 text-start">
-                                <img class="img-fluid rounded w-75 wow zoomIn" data-wow-delay="0.3s" src="img/about-2.jpg" style="margin-top: 25%;">
-                            </div>
-                            <div class="col-6 text-end">
-                                <img class="img-fluid rounded w-75 wow zoomIn" data-wow-delay="0.5s" src="img/about-3.jpg">
-                            </div>
-                            <div class="col-6 text-end">
-                                <img class="img-fluid rounded w-100 wow zoomIn" data-wow-delay="0.7s" src="img/about-4.jpg">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6">
-                        <h5 class="section-title ff-secondary text-start text-primary fw-normal">About Us</h5>
-                        <h1 class="mb-4">Welcome to <i class="fa fa-utensils text-primary me-2"></i>Restoran</h1>
-                        <p class="mb-4">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu diam amet diam et eos erat ipsum et lorem et sit, sed stet lorem sit.</p>
-                        <p class="mb-4">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo justo magna dolore erat amet</p>
-                        <div class="row g-4 mb-4">
-                            <div class="col-sm-6">
-                                <div class="d-flex align-items-center border-start border-5 border-primary px-3">
-                                    <h1 class="flex-shrink-0 display-5 text-primary mb-0" data-toggle="counter-up">15</h1>
-                                    <div class="ps-4">
-                                        <p class="mb-0">Years of</p>
-                                        <h6 class="text-uppercase mb-0">Experience</h6>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-6">
-                                <div class="d-flex align-items-center border-start border-5 border-primary px-3">
-                                    <h1 class="flex-shrink-0 display-5 text-primary mb-0" data-toggle="counter-up">50</h1>
-                                    <div class="ps-4">
-                                        <p class="mb-0">Popular</p>
-                                        <h6 class="text-uppercase mb-0">Master Chefs</h6>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <a class="btn btn-primary py-3 px-5 mt-2" href="">Read More</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- About End -->
-
-
-        <!-- Menu Start -->
-        <div class="container-xxl py-5"  style="display: none;">>
-            <div class="container">
-                <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-                    <h5 class="section-title ff-secondary text-center text-primary fw-normal">Food Menu</h5>
-                    <h1 class="mb-5">Most Popular Items</h1>
-                </div>
-                <div class="tab-class text-center wow fadeInUp" data-wow-delay="0.1s">
-                    <ul class="nav nav-pills d-inline-flex justify-content-center border-bottom mb-5">
-                        <li class="nav-item">
-                            <a class="d-flex align-items-center text-start mx-3 ms-0 pb-3 active" data-bs-toggle="pill" href="#tab-1">
-                                <i class="fa fa-coffee fa-2x text-primary"></i>
-                                <div class="ps-3">
-                                    <small class="text-body">Popular</small>
-                                    <h6 class="mt-n1 mb-0">Breakfast</h6>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="d-flex align-items-center text-start mx-3 pb-3" data-bs-toggle="pill" href="#tab-2">
-                                <i class="fa fa-hamburger fa-2x text-primary"></i>
-                                <div class="ps-3">
-                                    <small class="text-body">Special</small>
-                                    <h6 class="mt-n1 mb-0">Launch</h6>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="d-flex align-items-center text-start mx-3 me-0 pb-3" data-bs-toggle="pill" href="#tab-3">
-                                <i class="fa fa-utensils fa-2x text-primary"></i>
-                                <div class="ps-3">
-                                    <small class="text-body">Lovely</small>
-                                    <h6 class="mt-n1 mb-0">Dinner</h6>
-                                </div>
-                            </a>
-                        </li>
-                    </ul>
-                    <div class="tab-content">
-                        <div id="tab-1" class="tab-pane fade show p-0 active">
-                            <div class="row g-4">
-                                <div class="col-lg-6">
-                                    <div class="d-flex align-items-center">
-                                        <img class="flex-shrink-0 img-fluid rounded" src="img/menu-1.jpg" alt="" style="width: 80px;">
-                                        <div class="w-100 d-flex flex-column text-start ps-4">
-                                            <h5 class="d-flex justify-content-between border-bottom pb-2">
-                                                <span>Chicken Burger</span>
-                                                <span class="text-primary">$115</span>
-                                            </h5>
-                                            <small class="fst-italic">Ipsum ipsum clita erat amet dolor justo diam</small>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="d-flex align-items-center">
-                                        <img class="flex-shrink-0 img-fluid rounded" src="img/menu-2.jpg" alt="" style="width: 80px;">
-                                        <div class="w-100 d-flex flex-column text-start ps-4">
-                                            <h5 class="d-flex justify-content-between border-bottom pb-2">
-                                                <span>Chicken Burger</span>
-                                                <span class="text-primary">$115</span>
-                                            </h5>
-                                            <small class="fst-italic">Ipsum ipsum clita erat amet dolor justo diam</small>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="d-flex align-items-center">
-                                        <img class="flex-shrink-0 img-fluid rounded" src="img/menu-3.jpg" alt="" style="width: 80px;">
-                                        <div class="w-100 d-flex flex-column text-start ps-4">
-                                            <h5 class="d-flex justify-content-between border-bottom pb-2">
-                                                <span>Chicken Burger</span>
-                                                <span class="text-primary">$115</span>
-                                            </h5>
-                                            <small class="fst-italic">Ipsum ipsum clita erat amet dolor justo diam</small>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="d-flex align-items-center">
-                                        <img class="flex-shrink-0 img-fluid rounded" src="img/menu-4.jpg" alt="" style="width: 80px;">
-                                        <div class="w-100 d-flex flex-column text-start ps-4">
-                                            <h5 class="d-flex justify-content-between border-bottom pb-2">
-                                                <span>Chicken Burger</span>
-                                                <span class="text-primary">$115</span>
-                                            </h5>
-                                            <small class="fst-italic">Ipsum ipsum clita erat amet dolor justo diam</small>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="d-flex align-items-center">
-                                        <img class="flex-shrink-0 img-fluid rounded" src="img/menu-5.jpg" alt="" style="width: 80px;">
-                                        <div class="w-100 d-flex flex-column text-start ps-4">
-                                            <h5 class="d-flex justify-content-between border-bottom pb-2">
-                                                <span>Chicken Burger</span>
-                                                <span class="text-primary">$115</span>
-                                            </h5>
-                                            <small class="fst-italic">Ipsum ipsum clita erat amet dolor justo diam</small>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="d-flex align-items-center">
-                                        <img class="flex-shrink-0 img-fluid rounded" src="img/menu-6.jpg" alt="" style="width: 80px;">
-                                        <div class="w-100 d-flex flex-column text-start ps-4">
-                                            <h5 class="d-flex justify-content-between border-bottom pb-2">
-                                                <span>Chicken Burger</span>
-                                                <span class="text-primary">$115</span>
-                                            </h5>
-                                            <small class="fst-italic">Ipsum ipsum clita erat amet dolor justo diam</small>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="d-flex align-items-center">
-                                        <img class="flex-shrink-0 img-fluid rounded" src="img/menu-7.jpg" alt="" style="width: 80px;">
-                                        <div class="w-100 d-flex flex-column text-start ps-4">
-                                            <h5 class="d-flex justify-content-between border-bottom pb-2">
-                                                <span>Chicken Burger</span>
-                                                <span class="text-primary">$115</span>
-                                            </h5>
-                                            <small class="fst-italic">Ipsum ipsum clita erat amet dolor justo diam</small>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="d-flex align-items-center">
-                                        <img class="flex-shrink-0 img-fluid rounded" src="img/menu-8.jpg" alt="" style="width: 80px;">
-                                        <div class="w-100 d-flex flex-column text-start ps-4">
-                                            <h5 class="d-flex justify-content-between border-bottom pb-2">
-                                                <span>Chicken Burger</span>
-                                                <span class="text-primary">$115</span>
-                                            </h5>
-                                            <small class="fst-italic">Ipsum ipsum clita erat amet dolor justo diam</small>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div id="tab-2" class="tab-pane fade show p-0">
-                            <div class="row g-4">
-                                <div class="col-lg-6">
-                                    <div class="d-flex align-items-center">
-                                        <img class="flex-shrink-0 img-fluid rounded" src="img/menu-1.jpg" alt="" style="width: 80px;">
-                                        <div class="w-100 d-flex flex-column text-start ps-4">
-                                            <h5 class="d-flex justify-content-between border-bottom pb-2">
-                                                <span>Chicken Burger</span>
-                                                <span class="text-primary">$115</span>
-                                            </h5>
-                                            <small class="fst-italic">Ipsum ipsum clita erat amet dolor justo diam</small>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="d-flex align-items-center">
-                                        <img class="flex-shrink-0 img-fluid rounded" src="img/menu-2.jpg" alt="" style="width: 80px;">
-                                        <div class="w-100 d-flex flex-column text-start ps-4">
-                                            <h5 class="d-flex justify-content-between border-bottom pb-2">
-                                                <span>Chicken Burger</span>
-                                                <span class="text-primary">$115</span>
-                                            </h5>
-                                            <small class="fst-italic">Ipsum ipsum clita erat amet dolor justo diam</small>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="d-flex align-items-center">
-                                        <img class="flex-shrink-0 img-fluid rounded" src="img/menu-3.jpg" alt="" style="width: 80px;">
-                                        <div class="w-100 d-flex flex-column text-start ps-4">
-                                            <h5 class="d-flex justify-content-between border-bottom pb-2">
-                                                <span>Chicken Burger</span>
-                                                <span class="text-primary">$115</span>
-                                            </h5>
-                                            <small class="fst-italic">Ipsum ipsum clita erat amet dolor justo diam</small>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="d-flex align-items-center">
-                                        <img class="flex-shrink-0 img-fluid rounded" src="img/menu-4.jpg" alt="" style="width: 80px;">
-                                        <div class="w-100 d-flex flex-column text-start ps-4">
-                                            <h5 class="d-flex justify-content-between border-bottom pb-2">
-                                                <span>Chicken Burger</span>
-                                                <span class="text-primary">$115</span>
-                                            </h5>
-                                            <small class="fst-italic">Ipsum ipsum clita erat amet dolor justo diam</small>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="d-flex align-items-center">
-                                        <img class="flex-shrink-0 img-fluid rounded" src="img/menu-5.jpg" alt="" style="width: 80px;">
-                                        <div class="w-100 d-flex flex-column text-start ps-4">
-                                            <h5 class="d-flex justify-content-between border-bottom pb-2">
-                                                <span>Chicken Burger</span>
-                                                <span class="text-primary">$115</span>
-                                            </h5>
-                                            <small class="fst-italic">Ipsum ipsum clita erat amet dolor justo diam</small>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="d-flex align-items-center">
-                                        <img class="flex-shrink-0 img-fluid rounded" src="img/menu-6.jpg" alt="" style="width: 80px;">
-                                        <div class="w-100 d-flex flex-column text-start ps-4">
-                                            <h5 class="d-flex justify-content-between border-bottom pb-2">
-                                                <span>Chicken Burger</span>
-                                                <span class="text-primary">$115</span>
-                                            </h5>
-                                            <small class="fst-italic">Ipsum ipsum clita erat amet dolor justo diam</small>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="d-flex align-items-center">
-                                        <img class="flex-shrink-0 img-fluid rounded" src="img/menu-7.jpg" alt="" style="width: 80px;">
-                                        <div class="w-100 d-flex flex-column text-start ps-4">
-                                            <h5 class="d-flex justify-content-between border-bottom pb-2">
-                                                <span>Chicken Burger</span>
-                                                <span class="text-primary">$115</span>
-                                            </h5>
-                                            <small class="fst-italic">Ipsum ipsum clita erat amet dolor justo diam</small>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="d-flex align-items-center">
-                                        <img class="flex-shrink-0 img-fluid rounded" src="img/menu-8.jpg" alt="" style="width: 80px;">
-                                        <div class="w-100 d-flex flex-column text-start ps-4">
-                                            <h5 class="d-flex justify-content-between border-bottom pb-2">
-                                                <span>Chicken Burger</span>
-                                                <span class="text-primary">$115</span>
-                                            </h5>
-                                            <small class="fst-italic">Ipsum ipsum clita erat amet dolor justo diam</small>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div id="tab-3" class="tab-pane fade show p-0">
-                            <div class="row g-4">
-                                <div class="col-lg-6">
-                                    <div class="d-flex align-items-center">
-                                        <img class="flex-shrink-0 img-fluid rounded" src="img/menu-1.jpg" alt="" style="width: 80px;">
-                                        <div class="w-100 d-flex flex-column text-start ps-4">
-                                            <h5 class="d-flex justify-content-between border-bottom pb-2">
-                                                <span>Chicken Burger</span>
-                                                <span class="text-primary">$115</span>
-                                            </h5>
-                                            <small class="fst-italic">Ipsum ipsum clita erat amet dolor justo diam</small>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="d-flex align-items-center">
-                                        <img class="flex-shrink-0 img-fluid rounded" src="img/menu-2.jpg" alt="" style="width: 80px;">
-                                        <div class="w-100 d-flex flex-column text-start ps-4">
-                                            <h5 class="d-flex justify-content-between border-bottom pb-2">
-                                                <span>Chicken Burger</span>
-                                                <span class="text-primary">$115</span>
-                                            </h5>
-                                            <small class="fst-italic">Ipsum ipsum clita erat amet dolor justo diam</small>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="d-flex align-items-center">
-                                        <img class="flex-shrink-0 img-fluid rounded" src="img/menu-3.jpg" alt="" style="width: 80px;">
-                                        <div class="w-100 d-flex flex-column text-start ps-4">
-                                            <h5 class="d-flex justify-content-between border-bottom pb-2">
-                                                <span>Chicken Burger</span>
-                                                <span class="text-primary">$115</span>
-                                            </h5>
-                                            <small class="fst-italic">Ipsum ipsum clita erat amet dolor justo diam</small>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="d-flex align-items-center">
-                                        <img class="flex-shrink-0 img-fluid rounded" src="img/menu-4.jpg" alt="" style="width: 80px;">
-                                        <div class="w-100 d-flex flex-column text-start ps-4">
-                                            <h5 class="d-flex justify-content-between border-bottom pb-2">
-                                                <span>Chicken Burger</span>
-                                                <span class="text-primary">$115</span>
-                                            </h5>
-                                            <small class="fst-italic">Ipsum ipsum clita erat amet dolor justo diam</small>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="d-flex align-items-center">
-                                        <img class="flex-shrink-0 img-fluid rounded" src="img/menu-5.jpg" alt="" style="width: 80px;">
-                                        <div class="w-100 d-flex flex-column text-start ps-4">
-                                            <h5 class="d-flex justify-content-between border-bottom pb-2">
-                                                <span>Chicken Burger</span>
-                                                <span class="text-primary">$115</span>
-                                            </h5>
-                                            <small class="fst-italic">Ipsum ipsum clita erat amet dolor justo diam</small>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="d-flex align-items-center">
-                                        <img class="flex-shrink-0 img-fluid rounded" src="img/menu-6.jpg" alt="" style="width: 80px;">
-                                        <div class="w-100 d-flex flex-column text-start ps-4">
-                                            <h5 class="d-flex justify-content-between border-bottom pb-2">
-                                                <span>Chicken Burger</span>
-                                                <span class="text-primary">$115</span>
-                                            </h5>
-                                            <small class="fst-italic">Ipsum ipsum clita erat amet dolor justo diam</small>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="d-flex align-items-center">
-                                        <img class="flex-shrink-0 img-fluid rounded" src="img/menu-7.jpg" alt="" style="width: 80px;">
-                                        <div class="w-100 d-flex flex-column text-start ps-4">
-                                            <h5 class="d-flex justify-content-between border-bottom pb-2">
-                                                <span>Chicken Burger</span>
-                                                <span class="text-primary">$115</span>
-                                            </h5>
-                                            <small class="fst-italic">Ipsum ipsum clita erat amet dolor justo diam</small>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="d-flex align-items-center">
-                                        <img class="flex-shrink-0 img-fluid rounded" src="img/menu-8.jpg" alt="" style="width: 80px;">
-                                        <div class="w-100 d-flex flex-column text-start ps-4">
-                                            <h5 class="d-flex justify-content-between border-bottom pb-2">
-                                                <span>Chicken Burger</span>
-                                                <span class="text-primary">$115</span>
-                                            </h5>
-                                            <small class="fst-italic">Ipsum ipsum clita erat amet dolor justo diam</small>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Menu End -->
-
-
-        <!-- Reservation Start -->
-        <div class="container-xxl py-5 px-0 wow fadeInUp" data-wow-delay="0.1s"  style="display: none;">>
-            <div class="row g-0">
-                <div class="col-md-6">
-                    <div class="video">
-                        <button type="button" class="btn-play" data-bs-toggle="modal" data-src="https://www.youtube.com/embed/DWRcNpR6Kdc" data-bs-target="#videoModal">
-                            <span></span>
-                        </button>
-                    </div>
-                </div>
-                <div class="col-md-6 bg-dark d-flex align-items-center">
-                    <div class="p-5 wow fadeInUp" data-wow-delay="0.2s">
-                        <h5 class="section-title ff-secondary text-start text-primary fw-normal">Reservation</h5>
-                        <h1 class="text-white mb-4">Book A Table Online</h1>
-                        <form>
-                            <div class="row g-3">
-                                <div class="col-md-6">
-                                    <div class="form-floating">
-                                        <input type="text" class="form-control" id="name" placeholder="Your Name">
-                                        <label for="name">Your Name</label>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-floating">
-                                        <input type="email" class="form-control" id="email" placeholder="Your Email">
-                                        <label for="email">Your Email</label>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-floating date" id="date3" data-target-input="nearest">
-                                        <input type="text" class="form-control datetimepicker-input" id="datetime" placeholder="Date & Time" data-target="#date3" data-toggle="datetimepicker" />
-                                        <label for="datetime">Date & Time</label>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-floating">
-                                        <select class="form-select" id="select1">
-                                          <option value="1">People 1</option>
-                                          <option value="2">People 2</option>
-                                          <option value="3">People 3</option>
-                                        </select>
-                                        <label for="select1">No Of People</label>
-                                      </div>
-                                </div>
-                                <div class="col-12">
-                                    <div class="form-floating">
-                                        <textarea class="form-control" placeholder="Special Request" id="message" style="height: 100px"></textarea>
-                                        <label for="message">Special Request</label>
-                                    </div>
-                                </div>
-                                <div class="col-12">
-                                    <button class="btn btn-primary w-100 py-3" type="submit">Book Now</button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="modal fade" id="videoModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content rounded-0">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Youtube Video</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <!-- 16:9 aspect ratio -->
-                        <div class="ratio ratio-16x9">
-                            <iframe class="embed-responsive-item" src="" id="video" allowfullscreen allowscriptaccess="always"
-                                allow="autoplay"></iframe>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Reservation Start -->
-
-
-        <!-- Testimonial Start -->
-        <div class="container-xxl py-5 wow fadeInUp" data-wow-delay="0.1s">
-            <?php
-                if(!isset($modelReviewModel)) {
-                    $modelReviewModel = model('CommonTextModel');
-                }
-
-                $reviews = $modelReviewModel->getCompanyReviews([
-                    'where' => [
-                        'review.is_visible' => true
-                    ]
-                ]);
-            ?>
-            <div class="container">
-                <div class="text-center">
-                    <h5 class="section-title ff-secondary text-center text-primary fw-normal">Testimonial</h5>
-                    <h1 class="mb-5">Our Clients Say!!!</h1>
-                </div>
-                <div class="owl-carousel testimonial-carousel">
-                    <?php 
-                        if($reviews) {
-                            foreach($reviews as $key => $row) {
-                                ?> 
-                                <div class="testimonial-item bg-transparent border rounded p-4">
-                                    <i class="fa fa-quote-left fa-2x text-primary mb-3"></i>
-                                    <p><?php echo $row->text_content?></p>
-                                    <div class="d-flex align-items-center">
-                                        <img class="img-fluid flex-shrink-0 rounded-circle" src="<?php echo $row->reviewer_profile?>" style="width: 50px; height: 50px;">
-                                        <div class="ps-3">
-                                            <h5 class="mb-1"><?php echo $row->reviewer_name?></h5>
-                                        </div>
-                                    </div>
-                                </div>
-                                <?php
-                            }
-                        }
-                    ?>
-                </div>
-            </div>
-        </div>
-        <!-- Testimonial End -->
-        
-
-        <!-- Footer Start -->
-        <div class="container-fluid bg-dark text-light footer pt-5 mt-5 wow fadeIn" data-wow-delay="0.1s">
-            <div class="container py-5">
-                <div class="row g-5">
-                    <div class="col-lg-3 col-md-6">
-                        <h4 class="section-title ff-secondary text-start text-primary fw-normal mb-4">Company</h4>
-                        <a class="btn btn-link" href="<?php echo _route('home:index')?>">Home</a>
-                        <a class="btn btn-link" href="<?php echo _route('home:shop')?>">Menu</a>
-                        <a class="btn btn-link" href="<?php echo _route('home:reservation')?>">Reservation</a>
-                        <a class="btn btn-link" href="<?php echo _route('auth:login')?>">Login</a>
-                        <a class="btn btn-link" href="<?php echo _route('home:terms')?>">Terms & Condition</a>
-                    </div>
-                    <div class="col-lg-5 col-md-6">
-                        <h4 class="section-title ff-secondary text-start text-primary fw-normal mb-4" id="contact">Contact</h4>
-                        <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>
-                            <ul class="list-unstyled">
-                                <li class="mb-3">Hot Plate Sizzling House ,094 Gen. Trias Dr, Rosario, 4106 Cavite</li>
-                                <li class="mb-3">Hot Plate Sizzling House,Reparo Road, Santa Quiteria Rd, Reparo Rd, Caloocan, 1401 Metro Manila</li>
-                                <li>Hot Plate Sizzling House,  Brgy, Lhinette Homes, B9 L1, Tanza, 4108 Cavite</li>
-                            </ul>
-                        </p>
-                        <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>09171496844</p>
-                        <p class="mb-2"><i class="fa fa-envelope me-3"></i>adrian03.asistin03@gmail.com</p>
-                        <div class="d-flex pt-2 sr-only">
-                            <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-twitter"></i></a>
-                            <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-facebook-f"></i></a>
-                            <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-youtube"></i></a>
-                            <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-linkedin-in"></i></a>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6">
-                        <h4 class="section-title ff-secondary text-start text-primary fw-normal mb-4">Opening</h4>
-                        <h5 class="text-light fw-normal">Monday - Saturday</h5>
-                        <p>09AM - 09PM</p>
-                        <h5 class="text-light fw-normal">Sunday</h5>
-                        <p>10AM - 08PM</p>
-                    </div>
-                </div>
-            </div>
-            <div class="container">
-                <div class="copyright">
-                    <div class="row">
-                        <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
-                            &copy; <a class="border-bottom" href="#"><?php echo COMPANY_NAME?></a>, All Right Reserved.
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Footer End -->
-
-
-        <!-- Back to Top -->
-        <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+    <div class="navbar-header">
+      <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="icon icon-bar"></span>
+        <span class="icon icon-bar"></span>
+        <span class="icon icon-bar"></span>
+      </button>
+      <a href="#" class="navbar-brand"><?php echo COMPANY_NAME?></a>
+    </div>
+    <div class="collapse navbar-collapse">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="<?php echo _route('home:index')?>#home" class="smoothScroll">Home</a></li>
+        <li><a href="<?php echo _route('home:shop')?>" class="smoothScroll">Menu</a></li>
+        <li><a href="<?php echo _route('home:reservation')?>" class="smoothScroll">Reservation</a></li>
+        <li><a href="#contact" class="smoothScroll">Contact</a></li>
+        <li><a href="<?php echo _route('auth:login')?>" class="smoothScroll">Login|Register</a></li>
+      </ul>
     </div>
 
-    <!-- JavaScript Libraries -->
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="<?php echo _path_tmp('landing-resto/lib/wow/wow.min.js')?>"></script>
-    <script src="<?php echo _path_tmp('landing-resto/lib/easing/easing.min.js')?>"></script>
-    <script src="<?php echo _path_tmp('landing-resto/lib/waypoints/waypoints.min.js')?>"></script>
-    <script src="<?php echo _path_tmp('landing-resto/lib/counterup/counterup.min.js')?>"></script>
-    <script src="<?php echo _path_tmp('landing-resto/lib/owlcarousel/owl.carousel.min.js')?>"></script>
-    <script src="<?php echo _path_tmp('landing-resto/lib/tempusdominus/js/moment.min.js')?>"></script>
-    <script src="<?php echo _path_tmp('landing-resto/lib/tempusdominus/js/moment-timezone.min.js')?>"></script>
-    <script src="<?php echo _path_tmp('landing-resto/lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js')?>"></script>
+  </div>
+</div>
 
-    <!-- Template Javascript -->
-    <script src="<?php echo _path_tmp('landing-resto/js/main.js')?>"></script>
-    <script src="<?php echo _path_public('js/core.js')?>"></script>
-    <script src="<?php echo _path_public('js/global.js')?>"></script>
+<?php echo produce('content') ?>
 
-    <?php produce('scripts') ?>
+
+<!-- Feature section -->
+<section id="feature" class="parallax-section">
+  <div class="container">
+    <div class="row">
+
+      <div class="col-md-offset-2 col-md-8 col-sm-offset-1 col-sm-10">
+          <div class="wow fadeInUp section-title" data-wow-delay="0.6s">
+            <h2>Why Choose Us?</h2>
+            <h4>Steak House HTML CSS Template</h4>
+          </div>
+      </div>
+
+      <div class="clearfix"></div>
+
+      <div class="col-md-4 col-sm-6 wow fadeInUp" data-wow-delay="0.3s">
+        <div class="feature-thumb">
+          <div class="feature-icon">
+             <span><i class="fa fa-cutlery"></i></span>
+          </div>
+          <h3>SPECIAL DISH</h3>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elitquisque tempus ac eget diam et laoreet phasellus.</p>
+        </div>
+      </div>
+
+      <div class="col-md-4 col-sm-6 wow fadeInUp" data-wow-delay="0.6s">
+        <div class="feature-thumb">
+          <div class="feature-icon">
+            <span><i class="fa fa-coffee"></i></span>
+          </div>
+          <h3>BLACK COFFEE</h3>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elitquisque tempus ac eget diam et laoreet phasellus.</p>
+        </div>
+      </div>
+
+      <div class="col-md-4 col-sm-6 wow fadeInUp" data-wow-delay="0.9s">
+        <div class="feature-thumb">
+          <div class="feature-icon">
+            <span><i class="fa fa-bell-o"></i></span>
+          </div>
+           <h3>DINNER</h3>
+           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elitquisque tempus ac eget diam et laoreet phasellus.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- About section -->
+<section id="about" class="parallax-section" style="display: none;">
+	<div class="container">
+		<div class="row">
+
+      <div class="col-md-offset-2 col-md-8 col-sm-offset-1 col-sm-10">
+          <div class="wow fadeInUp section-title" data-wow-delay="0.3s">
+            <h2>Our Story</h2>
+            <h4>Your Dining Restaurant since 1989</h4>
+          </div>
+      </div>
+
+      <div class="clearfix"></div>
+      
+      <div class="wow fadeInUp col-md-3 col-sm-5" data-wow-delay="0.3s">
+        <img src="images/about-img.jpg" class="img-responsive" alt="About">
+        <h3>Nunc ullamcorper suscipit neque, ac malesuada purus molestie non.</h3>
+      </div>
+
+      <div class="wow fadeInUp col-md-5 col-sm-7" data-wow-delay="0.5s">
+
+        <!-- flexslider -->
+        <div class="flexslider">
+          <ul class="slides">
+
+            <li>
+              <img src="images/slide-img1.jpg" alt="Flexslider">
+            </li>
+            <li>
+              <img src="images/slide-img2.jpg" alt="Flexslider">
+            </li>
+            <li>
+              <img src="images/slide-img3.jpg" alt="Flexslider">
+            </li>
+
+          </ul>
+        </div>
+
+         <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt. Lorem ipsum dolor sit amet.</p>
+      </div>
+
+       <div class="wow fadeInUp col-md-4 col-sm-12" data-wow-delay="0.9s">
+        	<h2>Fine Dining</h2>
+         	<p>Steak House is free HTML website template for everyone. Please inform your friends about Tooplate site.</p>
+         	<p>Vestibulum id iaculis nisl. Pellentesque nec tortor sagittis, scelerisque ante at, sollicitudin leo. Vivamus pulvinar a justo vel lobortis.</p>
+         	
+            <ul>
+                <li>Donec fringilla ipsum</li>
+                <li>Integer nec urna</li>
+                <li>Curabitur porta</li>
+         	</ul>
+      </div>
+
+		</div>
+	</div>
+</section>
+
+
+<!-- Video section -->
+<section id="video" class="parallax-section" style="display: none;">
+  <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+
+          <div class="col-md-offset-2 col-md-8 col-sm-12">
+              <a class="popup-youtube" href="https://www.youtube.com/watch?v=CRhCMl7ZI84"><i class="fa fa-play"></i></a>
+              <h2 class="wow fadeInUp" data-wow-delay="0.5s">Watch the video</h2>
+              <p class="wow fadeInUp" data-wow-delay="0.8s">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet. Dolore magna aliquam erat volutpat.</p>
+          </div>
+
+      </div>
+    </div>
+</section>
+
+<!-- Menu section -->
+<section id="menu" class="parallax-section">
+  <div class="container">
+    <div class="row">
+
+      <div class="col-md-offset-2 col-md-8 col-sm-offset-1 col-sm-10">
+         <div class="wow fadeInUp section-title" data-wow-delay="0.3s">
+            <h2>Food Menu</h2>
+            <h4>we have special menus</h4>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-sm-12">
+        <div class="media wow fadeInUp" data-wow-delay="0.6s">
+          <div class="media-object pull-left">
+            <img src="images/gallery-img1.jpg" class="img-responsive" alt="Food Menu">
+            <span class="menu-price">$24</span>
+          </div>
+          <div class="media-body">
+            <h3 class="media-heading">Breakfast</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elitquisque tempus ac eget diam et.</p>
+          </div>
+        </div>
+
+        <div class="media wow fadeInUp" data-wow-delay="0.9s">
+          <div class="media-object pull-left">
+            <img src="images/gallery-img2.jpg" class="img-responsive" alt="Food Menu">
+            <span class="menu-price">$36</span>
+          </div>
+          <div class="media-body">
+            <h3 class="media-heading">New Pizza</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elitquisque tempus ac eget diam et.</p>
+          </div>
+        </div>
+
+        <div class="media wow fadeInUp" data-wow-delay="1.2s">
+          <div class="media-object pull-left">
+            <img src="images/gallery-img3.jpg" class="img-responsive" alt="Food Menu">
+            <span class="menu-price">$24</span>
+          </div>
+          <div class="media-body">
+            <h3 class="media-heading">Mushroom</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elitquisque tempus ac eget diam et.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-sm-12">
+        <div class="media wow fadeInUp" data-wow-delay="1s">
+          <div class="media-object pull-left">
+            <img src="images/gallery-img4.jpg" class="img-responsive" alt="Food Menu">
+            <span class="menu-price">$32</span>
+          </div>
+          <div class="media-body">
+            <h3 class="media-heading">Seafood</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elitquisque tempus ac eget diam et.</p>
+          </div>
+        </div>
+
+        <div class="media wow fadeInUp" data-wow-delay="1.3s">
+          <div class="media-object pull-left">
+            <img src="images/gallery-img5.jpg" class="img-responsive" alt="Food Menu">
+            <span class="menu-price">$64</span>
+          </div>
+          <div class="media-body">
+            <h3 class="media-heading">Spicy Beef</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elitquisque tempus ac eget diam et.</p>
+          </div>
+        </div>
+
+        <div class="media wow fadeInUp" data-wow-delay="1.6s">
+          <div class="media-object pull-left">
+            <img src="images/gallery-img6.jpg" class="img-responsive" alt="Food Menu">
+            <span class="menu-price">$45</span>
+          </div>
+          <div class="media-body">
+            <h3 class="media-heading">Dinner</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elitquisque tempus ac eget diam et.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Team section -->
+<section id="team" class="parallax-section">
+  <div class="container">
+    <div class="row">
+
+      <div class="col-md-offset-2 col-md-8 col-sm-offset-1 col-sm-10">
+         <div class="wow fadeInUp section-title" data-wow-delay="0.3s">
+            <h2>Meet Our Team</h2>
+            <h4>we are food specialists</h4>
+        </div>
+      </div>
+
+      <div class="clearfix"></div>
+
+      <div class="col-md-3 col-sm-6 wow fadeInUp" data-wow-delay="0.4s">
+          <div class="team-thumb">
+            <img src="images/chef1.jpg" class="img-responsive" alt="Team">  
+                <div class="team-des">
+                  <h3>Sandar</h3>
+                  <h4>Kitchen Manager</h4>
+                    <ul class="social-icon">
+                      <li><a href="#" class="fa fa-facebook"></a></li>
+                      <li><a href="#" class="fa fa-twitter"></a></li>
+                      <li><a href="#" class="fa fa-dribbble"></a></li>
+                    </ul>
+                </div>
+          </div>
+      </div>
+
+      <div class="col-md-3 col-sm-6 wow fadeInUp" data-wow-delay="0.6s">
+          <div class="team-thumb">
+            <img src="images/chef2.jpg" class="img-responsive" alt="Team">  
+              <div class="team-des">
+                <h3>Candy</h3>
+                <h4>Co-Founder</h4>
+                  <ul class="social-icon">
+                      <li><a href="#" class="fa fa-twitter"></a></li>
+                  </ul>
+              </div>
+          </div>
+      </div>
+
+      <div class="col-md-3 col-sm-6 wow fadeInUp" data-wow-delay="0.9s">
+          <div class="team-thumb">
+            <img src="images/chef3.jpg" class="img-responsive" alt="Team">  
+              <div class="team-des">
+                <h3>Mama</h3>
+                <h4>Senior Chef</h4>
+                  <ul class="social-icon">
+                      <li><a href="#" class="fa fa-facebook"></a></li>
+                      <li><a href="#" class="fa fa-twitter"></a></li>
+                  </ul>
+              </div>
+          </div>
+      </div>
+
+      <div class="col-md-3 col-sm-6 wow fadeInUp" data-wow-delay="1.1s">
+          <div class="join-team">
+            <i class="fa fa-plus"></i>
+            <p>Fusce interdum libero id libero volutpat varius convallis at sem.</p>
+            <a href="#" class="btn btn-default hvr-bounce-to-bottom">JOIN US</a>
+          </div>
+      </div>
+
+      <div class="clearfix"></div>
+
+      <div class="wow fadeInUp col-md-6 col-sm-6" data-wow-delay="0.3s">
+        <h2>Our Taste</h2>
+         <p>Fusce lobortis quis nisl nec facilisis. Donec fringilla ipsum arcu, quis maximus est molestie eget. Nunc ullamcorper suscipit neque, ac malesuada purus molestie non. Phasellus sollicitudin urna sed ultrices dictum.</p>
+      </div>
+
+      <div class="wow fadeInUp col-md-6 col-sm-6" data-wow-delay="0.6s">
+        <h2>Our Service</h2>
+         <p>Maecenas dictum cursus dui, quis mattis eros ultricies sed. Maecenas ligula nulla, dictum eu cursus id, semper in orci. Fusce vel nisi hendrerit justo viverra vehicula in nec nunc. Curabitur blandit fringilla quam.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Gallery section -->
+<section id="gallery" class="parallax-section">
+  <div class="container">
+    <div class="row">
+
+      <div class="col-md-12">
+
+       <div class="col-md-offset-2 col-md-8 col-sm-offset-1 col-sm-10">
+         <div class="wow fadeInUp section-title" data-wow-delay="0.3s">
+            <h2>Food Gallery</h2>
+            <h4>we have special foods</h4>
+        </div>
+      </div>
+        
+          <!-- iso section -->
+          <div class="iso-section wow fadeInUp" data-wow-delay="0.6s">
+
+            		<ul class="filter-wrapper clearfix">
+                        <li><a href="#" data-filter="*" class="selected opc-main-bg">All</a></li>
+                        <li><a href="#" class="opc-main-bg" data-filter=".breakfast">Breakfast</a></li>
+                        <li><a href="#" class="opc-main-bg" data-filter=".pizza">Pizza</a></li>
+                        <li><a href="#" class="opc-main-bg" data-filter=".lunch">Lunch</a></li>
+                        <li><a href="#" class="opc-main-bg" data-filter=".dinner">Dinner</a></li>
+                    </ul>
+
+                    <!-- iso box section -->
+                    <div class="iso-box-section wow fadeInUp" data-wow-delay="0.9s">
+                      <div class="iso-box-wrapper col4-iso-box">
+
+                        <div class="iso-box breakfast pizza lunch col-md-4 col-sm-6">
+                          <div class="gallery-thumb">
+                            <a href="images/gallery-img1.jpg" data-lightbox-gallery="food-gallery">
+                              <img src="images/gallery-img1.jpg" class="fluid-img" alt="Gallery">
+                                <div class="gallery-overlay">
+                                  <div class="gallery-item">
+                                    <i class="fa fa-search"></i>
+                                  </div>
+                                </div>
+                            </a>
+                          </div>
+                          <h3>Lorem One</h3>
+                        </div>
+
+                        <div class="iso-box breakfast lunch dinner col-md-4 col-sm-6">
+                          <div class="gallery-thumb">
+                            <a href="images/gallery-img2.jpg" data-lightbox-gallery="food-gallery">
+                              <img src="images/gallery-img2.jpg" class="fluid-img" alt="Gallery">
+                                <div class="gallery-overlay">
+                                  <div class="gallery-item">
+                                    <i class="fa fa-search"></i>
+                                  </div>
+                                </div>
+                            </a>
+                          </div>
+                          <h3>Lorem ipsum two</h3>
+                        </div>
+
+                        <div class="iso-box dinner col-md-4 col-sm-6">
+                          <div class="gallery-thumb">
+                            <a href="images/gallery-img3.jpg" data-lightbox-gallery="food-gallery">
+                              <img src="images/gallery-img3.jpg" class="fluid-img" alt="Gallery">
+                                <div class="gallery-overlay">
+                                  <div class="gallery-item">
+                                    <i class="fa fa-search"></i>
+                                  </div>
+                                </div>
+                            </a>
+                          </div>
+                          <h3>Third Lorem ipsum</h3>
+                        </div>
+
+                        <div class="iso-box breakfast col-md-4 col-sm-6">
+                          <div class="gallery-thumb">
+                            <a href="images/gallery-img4.jpg" data-lightbox-gallery="food-gallery">
+                              <img src="images/gallery-img4.jpg" class="fluid-img" alt="Gallery">
+                                <div class="gallery-overlay">
+                                  <div class="gallery-item">
+                                    <i class="fa fa-search"></i>
+                                  </div>
+                                </div>
+                            </a>
+                          </div>
+                          <h3>Lorem ipsum fourth</h3>
+                        </div>
+
+                        <div class="iso-box lunch col-md-4 col-sm-6">
+                          <div class="gallery-thumb">
+                            <a href="images/gallery-img5.jpg" data-lightbox-gallery="food-gallery">
+                              <img src="images/gallery-img5.jpg" class="fluid-img" alt="Gallery">
+                                <div class="gallery-overlay">
+                                  <div class="gallery-item">
+                                    <i class="fa fa-search"></i>
+                                  </div>
+                                </div>
+                            </a>
+                          </div>
+                          <h3>Fifth Lorem ipsum</h3>
+                        </div>
+
+                        <div class="iso-box pizza lunch col-md-4 col-sm-6">
+                          <div class="gallery-thumb">
+                            <a href="images/gallery-img6.jpg" data-lightbox-gallery="food-gallery">
+                              <img src="images/gallery-img6.jpg" class="fluid-img" alt="Gallery">
+                                <div class="gallery-overlay">
+                                  <div class="gallery-item">
+                                    <i class="fa fa-search"></i>
+                                  </div>
+                                </div>
+                            </a>
+                          </div>
+                          <h3>Sixth Lorem ipsum</h3>
+                        </div>
+
+                       </div>
+                    </div>
+
+          </div>
+
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Contact section -->
+<section id="contact" class="parallax-section">
+  <div class="overlay"></div>
+	<div class="container">
+		<div class="row">
+
+			<div class="col-md-offset-2 col-md-8 col-sm-offset-1 col-sm-10">
+            <div class="wow fadeInUp section-title" data-wow-delay="0.3s">
+                <h2>Reserve your Table</h2>
+                <h4>we are always ready to serve you!</h4>
+            </div>
+				<div class="contact-form wow fadeInUp" data-wow-delay="0.7s">
+					<form id="contact-form" method="post" action="#">
+						<input name="name" type="text" class="form-control" placeholder="Your Name" required>
+						<input name="email" type="email" class="form-control" placeholder="Your Email" required>
+						<textarea name="message" class="form-control" placeholder="Message" rows="5" required></textarea>
+						<input type="submit" class="form-control submit" value="Reserve">
+					</form>
+				</div>
+			</div>
+			
+		</div>
+	</div>
+</section>
+
+<!-- Footer section -->
+<footer>
+	<div class="container">
+		<div class="row">
+
+              <div class="wow fadeInUp col-md-4 col-sm-4" data-wow-delay="1.3s">
+                <h3>About the house</h3>
+                <p><?php echo COMPANY_LINES['LINEB'] . ' . ' . COMPANY_LINES['LINEC']?></p>
+              </div>  
+        
+              <div class="wow fadeInUp col-md-4 col-sm-4" data-wow-delay="1.6s">
+                <h3>Contact Detail</h3>
+                <p><?php echo COMPANY_ADDRESS?></p>
+                <p><?php echo COMPANY_TEL?></p>
+                <p><?php echo COMPANY_EMAIL?></p>
+              </div> 
+        
+              <div class="wow fadeInUp col-md-4 col-sm-4" data-wow-delay="1.9s">
+                <h3>Opening Hours</h3>
+                <strong>Monday - Firday</strong>
+                <p>11:00 AM - 10:00 PM</p>
+                <strong>Saturday - Sunday</strong>
+                <p>10:00 AM - 09:00 PM</p>
+              </div> 
+
+		</div>
+	</div>
+</footer>
+
+<!-- Copyright section -->
+<section id="copyright">
+  <div class="container">
+    <div class="row">
+
+      <div class="col-md-8 col-sm-8 col-xs-8">
+        <p>Copyright © <?php echo DATE('Y')?> <?php echo COMPANY_NAME?></p>
+      </div>  
+
+      <div class="col-md-4 col-sm-4 text-right">
+        <a href="#home" class="fa fa-angle-up smoothScroll gototop"></a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- javscript js -->
+<script src="<?php echo _path_tmp('steak-house/js/jquery.js')?>"></script>
+<script src="<?php echo _path_tmp('steak-house/js/bootstrap.min.js')?>"></script>
+
+<script src="<?php echo _path_tmp('steak-house/js/jquery.magnific-popup.min.js')?>"></script>
+
+<script src="<?php echo _path_tmp('steak-house/js/jquery.sticky.js')?>"></script>
+<script src="<?php echo _path_tmp('steak-house/js/jquery.backstretch.min.js')?>"></script>
+
+<script src="<?php echo _path_tmp('steak-house/js/isotope.js')?>"></script>
+<script src="<?php echo _path_tmp('steak-house/js/imagesloaded.min.js')?>"></script>
+<script src="<?php echo _path_tmp('steak-house/js/nivo-lightbox.min.js')?>"></script>
+
+<script src="<?php echo _path_tmp('steak-house/js/jquery.flexslider-min.js')?>"></script>
+
+<script src="<?php echo _path_tmp('steak-house/js/jquery.parallax.js')?>"></script>
+<script src="<?php echo _path_tmp('steak-house/js/smoothscroll.js')?>"></script>
+<script src="<?php echo _path_tmp('steak-house/js/wow.min.js')?>"></script>
+
+<script src="<?php echo _path_tmp('steak-house/js/custom.js')?>"></script>
+
 </body>
-
 </html>

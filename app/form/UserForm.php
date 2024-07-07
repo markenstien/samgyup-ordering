@@ -31,6 +31,8 @@
 			$this->addUserType();
 			$this->addProfile();
 			
+			$this->addSalaryPerHour();
+			$this->addUserAccess();
 			$this->addSubmit('');
 		}
 
@@ -94,7 +96,9 @@
 
 				'attributes' => [
 					'id' => 'gender',
-				]
+				],
+
+				'required' => true
 			]);
 		}
 
@@ -189,7 +193,7 @@
 		public function addUserType()
 		{
 			$this->add([
-				'type' => 'select',
+				'type' => 'hidden',
 				'name' => 'user_type',
 				'class' => 'form-control',
 				'required' => '',
@@ -200,6 +204,7 @@
 						UserService::STAFF
 					]
 				],
+				'value' => UserService::STAFF,
 				'attributes' => [
 					'id' => 'userType'
 				]
@@ -218,6 +223,41 @@
 
 				'attributes' => [
 					'id' => 'profile'
+				]
+			]);
+		}
+
+		public function addSalaryPerHour()
+		{
+			$this->add([
+				'type' => 'text',
+				'name' => 'salary_per_hour',
+				'class' => 'form-control',
+				'options' => [
+					'label' => 'Salary Per Hour',
+				],
+				'required' => true
+			]);
+		}
+
+		public function addUserAccess()
+		{
+			$this->add([
+				'type' => 'select',
+				'name' => 'user_access',
+				'class' => 'form-control',
+				'options' => [
+					'label' => 'Staff Access',
+					'option_values' => [
+						UserService::UA_CASHIER => UserService::UA_CASHIER,
+						UserService::UA_SERVER => UserService::UA_SERVER
+					]
+				],
+				
+				'required' => true,
+				
+				'attributes' => [
+					'id' => 'userAccess'
 				]
 			]);
 		}

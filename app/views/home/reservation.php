@@ -1,15 +1,11 @@
 <?php build('content') ?>
 
-<div class="container-xxl py-5 bg-dark hero-header mb-5">
-    <div class="container text-center my-5 pt-5 pb-4">
-        <h1 class="display-3 text-white mb-3 animated slideInDown">Reservation</h1>
-    </div>
-</div>
-
 <!-- Start Content -->
+ <?php echo wDivider(50)?>
+
 <div class="container py-5">
     <div class="col-md-6 mx-auto">
-        <h1>Reserve a table</h1>
+        <h3>Reserve a table</h3>
         <?php Flash::show() ?>
         <?php echo $appointmentForm->start() ?>
             <div class="form-group">
@@ -42,6 +38,6 @@
         <?php echo $appointmentForm->end() ?>
     </div>
 </div>
-
+<?php echo wDivider(100)?>
 <?php endbuild()?>
 <?php loadTo('tmp/landing')?>
