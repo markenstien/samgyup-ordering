@@ -8,7 +8,7 @@
         
         <div class="card-body">
             <div class="table-responsive">
-                <table class="table table-bordered">
+                <table class="table table-bordered table-sm dataTable">
                     <thead>
                         <th>#</th>
                         <th>Item</th>
@@ -21,8 +21,6 @@
                     <tbody>
                         <?php foreach($logs as $key => $row) :?>
                             <tr>
-                                <?php dd($row)?>
-                                
                                 <td><?php echo ++$key?></td>
                                 <td><?php echo $row->item_name?></td>
                                 <td><?php echo amountHTML($row->quantity) ?></td>

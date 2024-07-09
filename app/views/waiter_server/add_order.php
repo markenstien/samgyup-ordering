@@ -33,10 +33,11 @@
             <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
                 <?php $key = 0?>
                 <?php foreach($productsByCategory as $categoryName => $categories) :?>
-                    <li class="nav-item" role="presentation">
+                    <?php $isDefaultShown = $categoryName == 'all';?>
+                    <li class="nav-item <?php echo $isDefaultShown ? 'active': ''?>" role="presentation">
                         <button class="nav-link" id="pills-<?php echo $key?>-tab" 
                             data-bs-toggle="pill" data-bs-target="#panel<?php echo $key?>-table" 
-                            type="button" role="tab" aria-controls="<?php echo $key?>-table" aria-selected="true"><?php echo strtoupper($categoryName) ?></button>
+                            type="button" role="tab" aria-controls="<?php echo $key?>-table" aria-selected="<?php echo $isDefaultShown ? 'true': 'false'?>"><?php echo strtoupper($categoryName) ?></button>
                     </li>
                     <?php $key++?>
                 <?php endforeach?>
@@ -44,7 +45,8 @@
             <div class="tab-content mt-4" id="pills-tabContent">
                 <?php $key = 0?>
                 <?php foreach($productsByCategory as $categoryName => $items) :?>
-                    <div class="tab-pane fade" id="panel<?php echo $key?>-table" role="tabpanel" 
+                    <?php $isDefaultShown = $categoryName == 'all';?>
+                    <div class="tab-pane fade <?php echo $isDefaultShown ? 'active show': ''?>" id="panel<?php echo $key?>-table" role="tabpanel" 
                         aria-labelledby="pills-<?php echo $key?>-table">
                         <div class="row">
                             <?php foreach($items as $itemKey => $item) :?>

@@ -40,6 +40,10 @@
             </div>
 
             <div class="card-body">
+                <?php
+                    $unpaidTotal = 0;
+                    $overallTotal = 0;
+                ?>
                 <?php Flash::show() ?>
                 <div class="table-responsive">
                     <table class="table table-bordered">
@@ -55,13 +59,45 @@
 
                         <tbody>
                             <?php foreach($requestItems as $key => $row) :?>
+                                <?php
+                                    if(isEqual($row->payment_status, 'unpaid') && isEqual($row->request_status, 'complete')) {
+                                        $unpaidTotal += ( $row->price * $row->quantity);  
+                                    }
+
+                                    $overallTotal += ($row->price * $row->quantity);
+                                ?>
                                 <tr>
                                     <td><?php echo ++$key?></td>
                                     <td><?php echo $row->item_name?></td>
                                     <td><?php echo $row->price < 1 ?  '<span class="badge bg-warning">FREE</span>' : amountHTML($row->price)?></td>
                                     <td><?php echo $row->quantity?></td>
-                                    <td><?php echo $row->request_status?></td>
-                                    <td><?php echo $row->payment_status ?></td>
+                                    <td><?php 
+                                        $type = strtoupper($row->request_status);
+                                        $status = '';
+
+                                        switch(trim($row->request_status)) {
+                                            case 'pending': 
+                                                $status = 'warning';
+                                            break;
+
+                                            case 'complete': 
+                                                $status = 'success';
+                                            break;
+
+                                            default :
+                                                $status = 'danger';
+                                        }
+                                        echo wBadgeWrap($type, $status);
+                                    ?></td>
+                                    <td><?php 
+                                        if(isEqual($row->payment_status, 'paid')) {
+                                            $status = 'success';
+                                        } else {
+                                            $status = 'warning';
+                                        }
+
+                                        echo wBadgeWrap(strtoupper($row->payment_status), $status);
+                                    ?></td>
                                     <td>
                                         <a href="<?php echo _route('request-item:remove-one', $row->id, [
                                             'tableId' => $tableId
@@ -76,6 +112,11 @@
                             <?php endforeach?>
                         </tbody>
                     </table>
+
+                    <div class="mt-5">
+                        <div>Over All Total : <?php echo amountHTML($overallTotal)?></div>
+                        <div>Unpaid and delivered Total : <?php echo amountHTML($unpaidTotal)?></div>
+                    </div>
                 </div>
             </div>
         </div>

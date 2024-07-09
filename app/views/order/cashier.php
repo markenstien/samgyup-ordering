@@ -20,8 +20,8 @@
                             <small><?php echo $orderSession?></small>
                         </div>
                         <div class="col-md-9" style="text-align: right;">
-                            <a href="<?php echo _route('order:void')?>" class="btn btn-primary btn-danger">Void</a> &nbsp;
-                            <a href="<?php echo _route('order:add-order')?>" class="btn btn-primary btn-sm">Add Order</a>
+                            <a href="<?php echo _route('order:void')?>" class="btn btn-primary btn-danger btn-xs">Void</a> &nbsp;
+                            <a href="<?php echo _route('order:add-order')?>" class="btn btn-primary btn-xs">Add Order</a>
                         </div>
                     </div>
                     <?php Flash::show() ?>
@@ -32,10 +32,13 @@
                             $totalAmountOrder = 0;
                         ?>
 
-                        <div>
-                            <label for="#">Customer Name</label>
-                            <input type="text" name="customer_name" value="Guest" form="formCheckout">
-                        </div>
+                        <?php if($items) :?>
+                            <div>
+                                <label for="#">Customer Name</label>
+                                <input type="text" name="customer_name" value="Guest" form="formCheckout">
+                            </div>
+                        <?php endif?>
+
                         <div class="table-responsive">
                             <table class="table table-sm table-bordered">
                                 <thead>
@@ -63,11 +66,11 @@
                                             ?>
                                                 <td><?php echo ++$key?></td>
                                                 <td>
-                                                    <a href="<?php echo _route('cart:delete', $row->id)?>" class="btn btn-sm btn-danger">
+                                                    <a href="<?php echo _route('cart:delete', $row->id)?>" class="btn btn-xs btn-danger">
                                                         <i class="link-icon" data-feather="trash" style="font-size: 10px;"></i>
                                                     </a>
 
-                                                    <button type="submit" role="button" class="btn btn-sm btn-primary">
+                                                    <button type="submit" role="button" class="btn btn-xs btn-primary">
                                                         <i class="link-icon" data-feather="refresh-ccw"></i>
                                                     </button>
                                                 </td>
@@ -81,17 +84,18 @@
                                 </tbody>
                             </table>
                         </div>
-
-                        <?php Form::open([
-                            'method' => 'post',
-                            'url' => _route('cart:checkout'),
-                            'id'  => 'formCheckout'
-                            ]);
-                        ?>
-                            <div class="mt-3">
-                                <div class="text-center"><button type="submit" role="button" class="btn btn-success btn-sm">Set Order And Paid</button></div>
-                            </div>
-                        <?php Form::close()?>
+                        <?php if($items) :?>
+                            <?php Form::open([
+                                'method' => 'post',
+                                'url' => _route('cart:checkout'),
+                                'id'  => 'formCheckout'
+                                ]);
+                            ?>
+                                <div class="mt-3">
+                                    <div class="text-center"><button type="submit" role="button" class="btn btn-success btn-xs">Set Order And Paid</button></div>
+                                </div>
+                            <?php Form::close()?>
+                        <?php endif?>
                         <div class="mt-3"><h3>Total : <?php echo amountHTML($totalAmountOrder)?></h3></div>
                     </section>
 

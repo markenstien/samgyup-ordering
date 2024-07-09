@@ -83,12 +83,15 @@
             $productsByCategory = [];
 
             foreach($products as $key => $row) {
+                $productsByCategory['all'][] = $row;
+
                 if(!isset($productsByCategory[$row->category_name])) {
                     $productsByCategory[$row->category_name] = [];
                 }
                 $row->image = $this->itemModel->getSingleImage($row->id);
                 $productsByCategory[$row->category_name][] = $row;
             }
+
             $table = $this->tableModel->get($tableId);
 
             $this->data = [

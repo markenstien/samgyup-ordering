@@ -43,7 +43,7 @@
                 'name' => 'remarks',
                 'type' => 'textarea',
                 'options' => [
-                    'label' => 'Description',
+                    'label' => 'Notes',
                     'rows' => 3
                 ],
                 'class' => 'form-control'
@@ -84,7 +84,8 @@
                 'options' => [
                     'label' => 'Entry Origin',
                     'option_values' => [
-                        StockService::SALES, StockService::PURCHASE_ORDER
+                        StockService::SALES, StockService::RETURNS,
+                        StockService::RE_STOCKING
                     ]
                 ],
                 'required' => true,

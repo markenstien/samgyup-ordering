@@ -132,6 +132,8 @@
             $productsByCategory = [];
 
             foreach($products as $key => $row) {
+                $productsByCategory['all'][] = $row;
+
                 if(!isset($productsByCategory[$row->category_name])) {
                     $productsByCategory[$row->category_name] = [];
                 }

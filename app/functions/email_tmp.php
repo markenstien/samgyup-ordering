@@ -17,6 +17,7 @@
             </div>
         EOF;
 
+        return '';
         return $header;
     }
     
@@ -34,7 +35,7 @@
                 </div>
             </div>
         EOF;
-
+        return '';
         return $footer;
     }
 

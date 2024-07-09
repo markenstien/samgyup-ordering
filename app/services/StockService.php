@@ -4,6 +4,9 @@
     class StockService {
         const SALES = 'SALES';
         const PURCHASE_ORDER = 'PURCHASE_ORDER';
+        const RETURNS = 'RETURN_ORDER';
+        const RE_STOCKING = 'RE_STOCKING';
+        
         const ENTRY_DEDUCT = 'DEDUCT';
         const ENTRY_ADD = 'ADD';
 
