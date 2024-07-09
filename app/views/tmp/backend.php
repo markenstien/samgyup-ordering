@@ -59,6 +59,10 @@
   .box-table-sm-selected {
     background-color: orangered;
   }
+
+  .page-navigation {
+    justify-content: right !important;
+  }
 </style>
   
 </head>
@@ -159,14 +163,19 @@
             <?php if($auth) :?>
               <?php
                 $userType = whoIs('user_type');  
-                $flagCustomer = $userType == 'customer';
-                $flagStaff = $userType == 'staff';
-                $flagAdmin = $userType == 'admin';
+                $userAccess = whoIs('user_access');
+
+                $flagCustomer =  isEqual($userType, 'customer');
+                $flagManagement  = isEqual($userAccess, ['staff','cashier','admin','server']);
+                
+                $flagAdmin = isEqual($userType, 'admin');
+                $flagServer = isEqual($userAccess, 'server');
+                $flagCashier = isEqual($userAccess, 'cashier');
               ?>
                 <nav class="bottom-navbar">
                     <div class="container">
                         <ul class="nav page-navigation">
-                            <?php if($flagStaff || $flagAdmin) :?>
+                            <?php if($flagAdmin) :?>
                               <li class="nav-item">
                                   <a class="nav-link" href="<?php echo _route('dashboard:index')?>">
                                       <i class="link-icon" data-feather="box"></i>
@@ -174,29 +183,40 @@
                                   </a>
                               </li>
                             <?php endif?>
+                            <?php if($flagCashier) :?>
+                            <li class="nav-item">
+                                  <a class="nav-link" href="<?php echo _route('order:cashier')?>">
+                                      <i class="link-icon" data-feather="box"></i>
+                                      <span class="menu-title">Cashier</span>
+                                  </a>
+                              </li>
+                            <?php endif?>
 
+                            <?php if($flagServer) :?>
+                              <li class="nav-item">
+                                  <a class="nav-link" href="<?php echo _route('waiter-server:index')?>">
+                                      <i class="link-icon" data-feather="box"></i>
+                                      <span class="menu-title">Server</span>
+                                  </a>
+                              </li>
+                            <?php endif?>
+
+                            <?php if($flagManagement || $flagAdmin) :?>
                             <li class="nav-item">
                                 <a class="nav-link" href="<?php echo _route('table-unit:index')?>">
                                     <i class="link-icon" data-feather="box"></i>
                                     <span class="menu-title">Tables</span>
                                 </a>
                             </li>
-
                             <li class="nav-item">
-                                <a class="nav-link" href="<?php echo _route('order:cashier')?>">
+                                <a class="nav-link" href="<?php echo _route('attendance:index')?>">
                                     <i class="link-icon" data-feather="box"></i>
-                                    <span class="menu-title">Cashier</span>
+                                    <span class="menu-title">Attendance</span>
                                 </a>
                             </li>
+                            <?php endif?>
 
-                            <li class="nav-item">
-                                <a class="nav-link" href="<?php echo _route('waiter-server:index')?>">
-                                    <i class="link-icon" data-feather="box"></i>
-                                    <span class="menu-title">Server</span>
-                                </a>
-                            </li>
-
-                            <?php if(isEqual($auth->user_type, ['admin','supervisor'])) :?>
+                            <?php if($flagAdmin) :?>
                               <li class="nav-item">
                                   <a href="#" class="nav-link">
                                       <i class="link-icon" data-feather="heart"></i>
@@ -208,12 +228,13 @@
                                           <li class="nav-item"><a class="nav-link" href="<?php echo _route('category:index')?>">Category</a></li>
                                           <li class="nav-item"><a class="nav-link" href="<?php echo _route('item:index')?>">Products</a></li>
                                           <li class="nav-item"><a class="nav-link" href="<?php echo _route('stock:index')?>">Inventory</a></li>
+                                          <li class="nav-item"><a class="nav-link" href="<?php echo _route('stock:log')?>">logs</a></li>
                                       </ul>
                                   </div>
                               </li>
                             <?php endif?>
 
-                            <?php if(isEqual($auth->user_type, ['admin','supervisor'])) :?>
+                            <?php if($flagAdmin || $flagCashier) :?>
                               <li class="nav-item">
                                   <a href="#" class="nav-link">
                                       <i class="link-icon" data-feather="slack"></i>
@@ -231,12 +252,14 @@
                               </li>
                             <?php endif?>
 
+                            <?php if($flagAdmin) :?>
                             <li class="nav-item">
                                 <a class="nav-link" href="<?php echo _route('user:index')?>">
                                     <i class="link-icon" data-feather="users"></i>
                                     <span class="menu-title">Users</span>
                                 </a>
                             </li>
+                            <?php endif?>
 
                             <?php if($flagCustomer) :?>
                               <li class="nav-item">
@@ -251,24 +274,15 @@
                                       <span class="menu-title">Reservations</span>
                                   </a>
                               </li>
-
                               <li class="nav-item">
-                                    <a class="nav-link" href="<?php echo _route('home:shop')?>">
-                                        <span class="menu-title">
-                                          <span class="badge bg-success font-lg">Order Now <i class="link-icon" data-feather="shopping-cart"></i> </span>
-                                        </span>
-                                    </a>
-                                </li>
+                                  <a class="nav-link" href="<?php echo _route('payment:index') ?>">
+                                      <i class="link-icon" data-feather="paperclip"></i>
+                                      <span class="menu-title">Payments</span>
+                                  </a>
+                              </li>
                             <?php endif?>
 
-                            <li class="nav-item">
-                                <a class="nav-link" href="<?php echo _route('common-text:index') ?>">
-                                    <i class="link-icon" data-feather="thumbs-up"></i>
-                                    <span class="menu-title">Reviews</span>
-                                </a>
-                            </li>
-
-                            <?php if(isEqual($auth->user_type, ['admin'])) :?>
+                            <?php if($flagAdmin) :?>
                             <li class="nav-item">
                                 <a href="<?php echo _route('report:index')?>" class="nav-link">
                                     <i class="link-icon" data-feather="hash"></i>
@@ -303,7 +317,6 @@
     <script src="<?php echo _path_tmp('main-tmp/assets/vendors/core/core.js')?>"></script>
     <script src="<?php echo _path_public('js/core.js')?>"></script>
     <script src="<?php echo _path_public('js/global.js')?>"></script>
-    <?php produce('scripts')?>
     <!-- endinject -->
 
     <!-- Plugin js for this page -->
@@ -347,6 +360,8 @@
 
         });
     </script>
+
+  <?php produce('scripts')?>
     <!-- Custom js for this page -->
   <!-- End custom js for this page -->
 </body>

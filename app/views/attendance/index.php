@@ -3,30 +3,40 @@
         <div class="card">
             <?php echo wCardHeader(wCardTitle('Attendance'))?>
             <div class="card-body">
-                <?php if(isEqual($timelog['action'],'logout')) : ?>
-                    <div class="alert alert-primary">
-                        <div class="alert-div">
-                            <p>You are currently logged in : 
-                                <span id="clockIn"><?php echo $timelog['last']->clock_in?></span>
-                            <span id="duration" class="badge badge-warning"></span></p>
-                            <hr>
+                <?php if(isEqual(whoIs('user_access'), 'admin')) :?>
+                <div style="text-align: right;" class="mb-3">
+                    <a href="<?php echo _route('attendance:approval')?>" class="btn btn-warning btn-sm">Approvals</a>
+                    <a href="<?php echo _route('attendance:logged-in')?>" class="btn btn-warning btn-sm">Logged In</a>
+                </div>
+                <?php endif?>
+                <?php if(isEqual(whoIs('user_access'), 'admin')) :?>
+                    <div class="mb-5">
+                        <?php if(isEqual($timelog['action'],'logout')) : ?>
+                            <div class="alert alert-primary">
+                                <div class="alert-div">
+                                    <p>You are currently logged in : 
+                                        <span id="clockIn"><?php echo $timelog['last']->clock_in?></span>
+                                    <span id="duration" class="badge badge-warning"></span></p>
+                                    <hr>
 
-                            <?php echo wLinkDefault(_route('attendance:log', whoIs('id')), 'TIME OUT', [
+                                    <?php echo wLinkDefault(_route('attendance:log', whoIs('id')), 'TIME OUT', [
+                                        'class' => 'btn btn-primary btn-sm'
+                                    ])?>
+                                </div>
+                            </div>
+                        <?php else :?>
+                            <hr>
+                            <?php echo wLinkDefault(_route('attendance:log', whoIs('id')), 'TIME IN', [
                                 'class' => 'btn btn-primary btn-sm'
                             ])?>
-                        </div>
+                        <?php endif?>
                     </div>
-                <?php else :?>
-                    <hr>
-                    <?php echo wLinkDefault(_route('attendance:log', whoIs('id')), 'TIME IN', [
-                        'class' => 'btn btn-primary btn-sm'
-                    ])?>
                 <?php endif?>
 
 
                 <?php Flash::show()?>
                 <div class="table-responsive">
-                    <table class="table table-bordered" id="dataTable">
+                    <table class="table table-bordered table-sm dataTable">
                         <thead>
                             <th>#</th>
                             <th>Employee</th>

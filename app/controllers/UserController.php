@@ -98,9 +98,16 @@
 				]
 			]);
 
+			$this->data['user_form']->add([
+				'name' => 'user_access',
+				'type' => 'hidden',
+				'value' => $user->user_access
+			]);
+
 			// dump($user);
 
 			$this->data['daysoftheweek'] = dayOfWeeks();
+			$this->data['user'] = $user;
 
 			if(!isEqual(whoIs('user_type'), 'admin'))
 				$this->data['user_form']->remove('user_type');

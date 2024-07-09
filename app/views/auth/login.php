@@ -2,6 +2,7 @@
 <div class="container py-5">
   <div class="row">
     <div class="col-md-4">
+
         <?php Flash::show()?>
           <h3 class="mb-4">Welcome back! Log in to your account.</h3>
           <img src="<?php echo _path_upload_get('images/grill_logo.png');?>" alt="<?php echo COMPANY_NAME?> Logo"

@@ -22,6 +22,7 @@
 			'user_type',
 			'user_access',
 			'profile',
+			'is_verified',
 			'salary_per_hour'
 		];
 
@@ -39,7 +40,8 @@
 			$user_id = $id;
 			$fillable_datas = $this->getFillablesOnly($user_data);
 			$validated = $this->validate($fillable_datas, $id);
-
+			$fillable_datas['user_access'] = !empty($fillable_datas['user_access']) ? $fillable_datas['user_access'] : 'customer';
+			
 			if(!$validated) {
 				return false;
 			}

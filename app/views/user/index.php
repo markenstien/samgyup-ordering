@@ -16,6 +16,7 @@
 						<th>Gender</th>
 						<th>Phone Number</th>
 						<th>Type</th>
+						<th>Access</th>
 						<th>Action</th>
 					</thead>
 
@@ -26,6 +27,7 @@
 								<td><?php echo $row->gender ?></td>
 								<td><?php echo $row->phone ?></td>
 								<td><?php echo $row->user_type ?></td>
+								<td><?php echo $row->user_access ?></td>
 								<td>
 									<?php 
 										$anchor_items = [

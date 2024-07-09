@@ -82,8 +82,6 @@
                 if(is_object($user))
                     return $user->$prop;  
             }
-
-                      
         } 
 
         return $user ?? '';

@@ -18,7 +18,7 @@ use Services\UserService;
         }
 
         public function index() {
-            if(isEqual(whoIs('user_type'), UserService::ADMIN)) {
+            if(!isEqual(whoIs('user_type'), UserService::ADMIN)) {
                 $this->data['attendanceList'] = $this->model->getAll([
                     'order' => 'id desc',
                     'where' => [
@@ -107,8 +107,6 @@ use Services\UserService;
 
         public function loggedIn() {
             $this->data['loggedUsers'] = $this->timelogPlusModel->getOngoing();
-            $this->data['QRTokenService'] = new QRTokenService;
-            $this->data['token'] = QRTokenService::getLatestToken(QRTokenService::LOGIN_TOKEN);
             return $this->view('attendance/logged_in', $this->data);
         }
     }

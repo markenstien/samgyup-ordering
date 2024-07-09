@@ -8,7 +8,6 @@
                         <thead>
                             <th>#</th>
                             <th>Employee</th>
-                            <th>Employee ID</th>
                             <th>Start Date</th>
                             <th>End Date</th>
                             <th>Total Hours</th>
@@ -22,7 +21,6 @@
                                 <tr>
                                     <td><?php echo ++$key?></td>
                                     <td><?php echo $row->fullname?></td>
-                                    <td><?php echo $row->uid?></td>
                                     <td><?php echo $row->time_in?></td>
                                     <td><?php echo $row->time_out?></td>
                                     <td><?php echo minutesToHours(dateDifferenceInMinutes($row->time_in, $row->time_out))?></td>
@@ -50,4 +48,4 @@
         </div>
     </div>
 <?php endbuild()?>
-<?php loadTo('tmp/admin_layout')?>
+<?php loadTo()?>

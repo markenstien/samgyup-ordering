@@ -21,6 +21,8 @@
                     <tbody>
                         <?php foreach($logs as $key => $row) :?>
                             <tr>
+                                <?php dd($row)?>
+                                
                                 <td><?php echo ++$key?></td>
                                 <td><?php echo $row->item_name?></td>
                                 <td><?php echo amountHTML($row->quantity) ?></td>

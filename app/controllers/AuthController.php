@@ -78,8 +78,8 @@
 				$post = request()->posts();
 
 				$post['user_type'] = UserService::USER_CUSTOMER;
-				
 				$post['is_verified'] = false;
+				
 				$isOkay = $this->user->save($post);
 				if(!$isOkay) {
 					Flash::set($this->user->getErrorString(),'danger');
