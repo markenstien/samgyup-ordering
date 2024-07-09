@@ -183,7 +183,7 @@
                                   </a>
                               </li>
                             <?php endif?>
-                            <?php if($flagCashier || $flagAdmin) :?>
+                            <?php if($flagCashier) :?>
                             <li class="nav-item">
                                   <a class="nav-link" href="<?php echo _route('order:cashier')?>">
                                       <i class="link-icon" data-feather="box"></i>
@@ -192,7 +192,7 @@
                               </li>
                             <?php endif?>
 
-                            <?php if($flagServer || $flagAdmin) :?>
+                            <?php if($flagServer) :?>
                               <li class="nav-item">
                                   <a class="nav-link" href="<?php echo _route('waiter-server:index')?>">
                                       <i class="link-icon" data-feather="box"></i>
