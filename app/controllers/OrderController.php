@@ -32,7 +32,7 @@
         public function show($id) {
             $req = request()->get();
             
-            _authRequired(['admin']);
+            _authRequired(['admin','staff','customer','server','cashier']);
             $order = $this->model->getComplete($id);
             $tableUnit = $this->tableModel->get($order['order']->table_number_id);
             $tables = $this->tableModel->all(null, 'FIELD(table_unit_status, "available", "reserved", "occupied"), table_unit_number asc');

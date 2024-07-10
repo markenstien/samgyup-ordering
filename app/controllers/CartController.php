@@ -148,7 +148,7 @@
 							"Order #{$order->reference}",
 							$emailBody
 						];
-						_mail(... $emailPlaceHolder);
+						// _mail(... $emailPlaceHolder);
 					}
                     OrderService::endPurchaseSession('cashier');
                     OrderService::startPurchaseSession('cashier');//reset order
