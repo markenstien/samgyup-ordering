@@ -9,7 +9,7 @@
                     <a href="<?php echo _route('attendance:logged-in')?>" class="btn btn-warning btn-sm">Logged In</a>
                 </div>
                 <?php endif?>
-                <?php if(isEqual(whoIs('user_access'), 'admin')) :?>
+                <?php if(isEqual(whoIs('user_access'), ['admin','staff','cashier','server'])) :?>
                     <div class="mb-5">
                         <?php if(isEqual($timelog['action'],'logout')) : ?>
                             <div class="alert alert-primary">

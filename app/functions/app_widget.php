@@ -205,10 +205,10 @@
         }
         return <<<EOF
             <div style='cursor:pointer' class='box-table box-table-sm {$boxColor}' 
-            onclick='location.href="{$link}"' 
-            data-id="{$tableId}" 
-            data-text = "{$tableNumber}"
-            data-status = "{$status}"
+                onclick='location.href="{$link}"' 
+                data-id="{$tableId}" 
+                data-text = "{$tableNumber}"
+                data-status = "{$status}"
             title="{$status}">
                 <h2>{$tableNumber}</h2>
             </div>
