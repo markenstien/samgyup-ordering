@@ -20,7 +20,7 @@
 							<h4 class="mb-2">User Information</h4>
 							<?php echo $user_form->getRow('profile')?>
 							<?php 
-								if(whoIs('user_type'), 'admin') {
+								if(isEqual(whoIs('user_type'), 'admin')) {
 									echo $user_form->get('user_access');
 								}
 							?>
