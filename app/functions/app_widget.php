@@ -135,7 +135,7 @@
 
     function wLinkDefault($link , $text = 'Edit' , $attributes = [])
 	{	
-		$icon = isset($attributes['icon']) ? "<i class='{$attributes['icon']}'> </i>" : null;
+		$icon = isset($attributes['icon']) ? "<i data-feather='{$attributes['icon']}'> </i>" : null;
 		$attributes = is_null($attributes) ? $attributes : keypairtostr($attributes);
 		return <<<EOF
 			<a href="{$link}" style="text-decoration:underline" {$attributes}>{$icon} {$text}</a>

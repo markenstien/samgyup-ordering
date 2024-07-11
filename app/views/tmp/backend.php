@@ -79,14 +79,6 @@
                         </a>
                         <?php if($auth) :?>
                             <?php $notifications = _notify_pull_items($auth->id)?>
-                            <form class="search-form">
-                                <div class="input-group">
-                                    <div class="input-group-text">
-                                      <i data-feather="search"></i>
-                                    </div>
-                                    <input type="text" class="form-control" id="navbarForm" placeholder="Search here...">
-                                </div>
-                            </form>
                             <ul class="navbar-nav">
                                   <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle" href="#" id="notificationDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -100,14 +92,15 @@
                                     <?php if($notifications) :?>
                                     <div class="dropdown-menu p-0" aria-labelledby="notificationDropdown">
                                       <div class="px-3 py-2 d-flex align-items-center justify-content-between border-bottom">
-                                        <p>(<?php echo count($notifications) ?>) Notification</p>
+                                        <p>Notification</p>
                                         <a href="javascript:;" class="text-muted">Clear all</a>
                                       </div>
                                       <div class="p-1">
                                         <?php foreach($notifications as $key => $row) :?>
+                                          <?php if($key > 5) break?>
                                           <a href="<?php echo $row->href ?>" class="dropdown-item d-flex align-items-center py-2">
                                           <div class="wd-30 ht-30 d-flex align-items-center justify-content-center bg-danger rounded-circle me-3">
-                                            <i class="icon-sm text-white" data-feather="alert-circle"></i>
+                                            <i class="icon-sm text-white" data-feather="at-sign"></i>
                                           </div>
                                           <div class="flex-grow-1 me-2">
                                             <p><?php echo $row->message?></p>
@@ -284,8 +277,8 @@
 
                             <?php if($flagAdmin) :?>
                             <li class="nav-item">
-                                <a href="<?php echo _route('report:index')?>" class="nav-link">
-                                    <i class="link-icon" data-feather="hash"></i>
+                                <a href="<?php echo _route('report:sales')?>" class="nav-link">
+                                    <i class="link-icon" data-feather="film"></i>
                                     <span class="menu-title">Reports</span></a>
                             </li>
                             <?php endif?>

@@ -70,7 +70,7 @@
                 print <<< EOF
                  <div class="alert alert-{$className} alert-dismissible" role="alert">
                     {$message}
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="btn-close">X</button>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="btn-close"></button>
                 </div>
                 EOF;
             }

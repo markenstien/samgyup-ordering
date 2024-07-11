@@ -14,7 +14,6 @@
                             <h3>General</h3>
                             <?php __($item_form->getCol('name'))?>
                             <div class="row mt-2">
-                                <div class="col"><?php __($item_form->getCol('sku'))?></div>
                                 <div class="col"><?php __($item_form->getCol('category_id'))?></div>
                             </div>
                             <div class="row mt-2">

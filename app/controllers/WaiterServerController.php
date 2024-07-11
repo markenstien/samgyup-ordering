@@ -1,6 +1,9 @@
 <?php
+
     use Services\OrderService;
-    load(['OrderService'], SERVICES);
+    use Services\CategoryService;
+
+    load(['OrderService', 'CategoryService'], SERVICES);
 
     class WaiterServerController extends Controller
     {
@@ -66,6 +69,7 @@
             $this->data['tableId'] = $order->table_number_id;
             $this->data['requestItems'] = $requestItems;
             $this->data['orderId'] = $orderId;
+            $this->data['categorySerivce'] = new CategoryService;
 
             return $this->view('waiter_server/show_order', $this->data);
         }

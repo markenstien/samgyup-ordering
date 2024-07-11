@@ -152,8 +152,20 @@
 
         public function complete($id) {
             $result = parent::update([
-                'order_status' => 'completed'
+                'order_status' => 'completed',
+                'is_paid' => true
             ], $id);
+
+            if($result) {
+                $order = parent::single($id);
+                $this->payment = model('PaymentModel');
+
+                $this->payment->update([
+                    'is_removed' => 0,
+                    'remarks'    => 'Payment Approved',
+                    'amount' => $order->net_amount
+                ], ['order_id' => $id]);
+            }
 
             return $result;
         }

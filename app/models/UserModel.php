@@ -252,7 +252,6 @@
 
 			if(!$user) {
 				$errors[] = " Email '{$email}' does not exists in any account";
-				return false;
 			}
 
 			if(!isEqual($user->password ?? '' , $password)){

@@ -2,7 +2,7 @@
 	<div class="card">
 		<div class="card-header">
 			<h4 class="card-title">Add Staff</h4>
-			<?php echo wLinkDefault(_route('user:index'))?>
+			<?php echo wLinkDefault(_route('user:index'), 'Back to users')?>
 			<?php Flash::show()?>
 		</div>
 
@@ -25,17 +25,24 @@
 							<?php echo $user_form->getRow('gender')?>
 							<?php echo $user_form->getRow('phone')?>
 							<?php echo $user_form->getRow('email')?>
+							<div>
 							<?php echo $user_form->getRow('password')?>
+							<small class="text-info">Fill only if you want to change your current password</small>
+							</div>
 						</section>
 
 						<?php echo wDivider()?>
 
 
 						<?php if(isEqual(whoIs('user_type'), 'admin')) :?>
-						<section>
-							<h4 class="mb-2">User Type</h4>
-							<?php echo $user_form->getRow('user_access')?>
-						</section>
+							<section>
+								<h4 class="mb-2">User Type</h4>
+								<?php echo $user_form->getRow('user_access', [
+									'attributes' => [
+										'disabled' => true
+									]
+								])?>
+							</section>
 						<?php endif?>
 
 						<?php echo wDivider()?>

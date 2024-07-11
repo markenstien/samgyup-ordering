@@ -76,7 +76,7 @@
                 'type' => 'text',
                 'required' => true,
                 'options' => [
-                    'label' => 'Cost Price'
+                    'label' => 'Capital'
                 ],
                 'class' => 'form-control'
             ]);
@@ -88,7 +88,7 @@
                 'type' => 'text',
                 'required' => true,
                 'options' => [
-                    'label' => 'Sell Price'
+                    'label' => 'Market Price'
                 ],
                 'class' => 'form-control'
             ]);
@@ -100,7 +100,7 @@
                 'type' => 'number',
                 'required' => true,
                 'options' => [
-                    'label' => 'Minimum Stocks'
+                    'label' => 'Min Stocks'
                 ],
                 'class' => 'form-control'
             ]);
@@ -112,7 +112,7 @@
                 'type' => 'number',
                 'required' => true,
                 'options' => [
-                    'label' => 'Maximum Stocks'
+                    'label' => 'Max Stocks'
                 ],
                 'class' => 'form-control'
             ]);

@@ -60,6 +60,7 @@
 
 				$salesReport = new SalesReport();
 				$saleItems = $this->orderItemModel->getItemsByParam($summaryParam);
+				
 				$highestSellingInQuantity = $this->orderItemModel->getLowestOrHighest($summaryParam, OrderItemModel::CATEGORY_QUANTITY,'desc'
 				);
 				$lowestSellingInQuantity = $this->orderItemModel->getLowestOrHighest(

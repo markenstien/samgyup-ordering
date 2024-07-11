@@ -80,6 +80,13 @@
                 <div class="card">
                     <div class="card-header">
                         <h4 class="card-title">Inventory Logs</h4>
+
+                        <?php echo wLinkDefault(_route('stock:create',null,[
+                            'csrfToken' => csrfGet(),
+                            'item_id'   => $item->id
+                        ]), 'Manage Stock', [
+                            'icon' => 'settings'
+                        ])?>
                     </div>
                     <div class="card-body">
                         

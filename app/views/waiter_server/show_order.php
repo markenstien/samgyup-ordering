@@ -99,14 +99,18 @@
                                         echo wBadgeWrap(strtoupper($row->payment_status), $status);
                                     ?></td>
                                     <td>
-                                        <a href="<?php echo _route('request-item:remove-one', $row->id, [
-                                            'tableId' => $tableId
-                                        ])?>">Remove</a>  | 
-                                        <!-- <a href="#">Update</a> |  -->
-                                        <a href="<?php echo _route('request-item:complete-one', $row->id, [
-                                            'tableId' => $tableId,
-                                            'orderId' => $orderId
-                                        ])?>">Complete</a>
+                                        <?php if(isEqual($row->category_code, $categorySerivce::PRODUCT_CATEGORY)) :?>
+                                            <a href="<?php echo _route('request-item:remove-one', $row->id, [
+                                                'tableId' => $tableId
+                                            ])?>">Remove</a>  | 
+                                            <!-- <a href="#">Update</a> |  -->
+                                            <a href="<?php echo _route('request-item:complete-one', $row->id, [
+                                                'tableId' => $tableId,
+                                                'orderId' => $orderId
+                                            ])?>">Complete</a>
+                                        <?php else :?>
+                                            <span class="badge bg-success">Package</span>
+                                        <?php endif?>
                                     </td>
                                 </tr>
                             <?php endforeach?>

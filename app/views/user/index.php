@@ -10,7 +10,7 @@
 			<?php Flash::show()?>
 
 			<div class="table-responsive" style="min-height: 30vh;">
-				<table class="table table-bordered dataTable">
+				<table class="table table-sm dataTable">
 					<thead>
 						<th>Name</th>
 						<th>Gender</th>

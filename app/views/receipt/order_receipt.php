@@ -164,7 +164,7 @@
                 </section>
                 <?php endif?>
 
-                <section class="mt-5">
+                <section class="mt-5" style="display: none;">
                     <?php if(!$payment) :?>
                         <?php echo wLinkDefault('#', 'Pay Now', [
                             'class' => 'btn btn-primary btn-sm',

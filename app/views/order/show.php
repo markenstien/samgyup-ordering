@@ -20,12 +20,14 @@
                     <div class="row mb-3">
                         <div class="col-md-3">
                             <h5>ORDER DETAILS : <?php echo $order->customer_name?></h5>
-                            <small><?php echo $order->reference?></small>
+                            <small><?php echo $order->reference?></small> 
                         </div>
 
                         <div class="col-md-9" style="text-align: right;">
-                            <a href="<?php echo _route('order:void-order', $order->id)?>" class="btn btn-primary btn-danger">Cancel</a> &nbsp;
-                            <a href="<?php echo _route('order:complete', $order->id)?>" class="btn btn-primary btn-success">Complete</a> &nbsp;
+                            <a href="<?php echo _route('order:void-order', $order->id)?>" class="btn btn-primary btn-danger form-verify">Cancel</a> &nbsp;
+                            <a href="<?php echo _route('order:complete', $order->id)?>" class="btn btn-primary btn-success form-verify">Complete</a> &nbsp;
+                            <a href="<?php echo _route('receipt:order', $order->id)?>" class="btn btn-primary btn-info"><i data-feather="info"></i></a> &nbsp;
+                            
                         </div>
                     </div>
                     <?php Flash::show() ?>
@@ -78,6 +80,8 @@
                             </tbody>
                         </table>
                     </div>
+
+                    <h4 class="mb-3 mt-3">Total Amount : <?php echo amountHTML($totalAmountOrder)?></h4>
 
                     <?php if($tableUnit) :?>
                         <div class="mt-3">

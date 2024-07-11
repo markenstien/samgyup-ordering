@@ -107,7 +107,6 @@
             }, 1000);
             
         })
-
     </script>
 <?php endbuild()?>
 <?php loadTo()?>

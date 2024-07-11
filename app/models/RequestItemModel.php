@@ -44,10 +44,15 @@
             }
             
             $this->db->query(
-                "SELECT ri.*, item.name as item_name 
+                "SELECT ri.*, item.name as item_name,
+                    category.category as category_code,
+                    category.name as category_name
                     FROM {$this->table} as ri
                         LEFT JOIN items as item 
                             ON item.id = ri.item_id
+
+                        LEFT JOIN categories as category
+                            ON item.category_id = category.id
                     {$where} {$order} {$limit}"
             );
 
@@ -70,6 +75,11 @@
                     'ri.id' => $id
                 ]
             ]);
+
+            if(isEqual($itemData->request_status, 'complete')) {
+                $this->addMessage("Unable to remove order that is already compelted.");
+                return false;
+            }
 
             if(isEqual($itemData->request_status, 'complete')) {
                 $this->addMessage("Unable to remove order that is already compelted.");

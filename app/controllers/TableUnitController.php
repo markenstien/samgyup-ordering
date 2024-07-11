@@ -50,6 +50,8 @@
                 $this->model->update([
                     'table_unit_number' => $post['table_unit_number']
                 ], $id);
+
+                return redirect(_route('table-unit:index'));
             }
 
             $this->tableUnitForm->setValue('table_unit_number', $this->data['tableUnit']->table_unit_number);

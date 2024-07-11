@@ -183,17 +183,17 @@
             }
             $where = " WHERE " .parent::conditionConvert($where);
             $this->db->query(
-                "SELECT item.name as item_name,
-                item.sku as sku, oi.*, ordr.reference, ordr.created_at, ordr.is_paid,
-                ordr.date_time
-            
-                FROM items as item
-                LEFT JOIN order_items as oi
-                ON oi.item_id = item.id 
-            
-                LEFT JOIN orders as ordr 
-                ON oi.order_id = ordr.id
-                {$where}
+                "   SELECT item.name as item_name,
+                    item.sku as sku, oi.*, ordr.reference, ordr.created_at, ordr.is_paid,
+                    ordr.date_time, oi.quantity as total_quantity, oi.sold_price as sold_price
+                
+                    FROM items as item
+                    LEFT JOIN order_items as oi
+                    ON oi.item_id = item.id 
+                
+                    LEFT JOIN orders as ordr 
+                    ON oi.order_id = ordr.id
+                    {$where}
                 "
             );
 
@@ -205,9 +205,16 @@
          */
         public function getLowestOrHighest($params = [], $category = null, $sort = null) {
             $where = null;
-            if (isset($params['where'])) {
+            $limit = null;
+
+            if (!empty($params['where'])) {
                 $where = " WHERE ".parent::conditionConvert($params['where']);
             }
+
+            if (!empty($params['limit'])) {
+                $limit = " LIMIT " . $params['limit'];
+            }
+
             if ($category == self::CATEGORY_QUANTITY) {
                 $this->db->query(
                     "SELECT SUM(quantity) as total_quantity, item.name as item_name ,
@@ -218,8 +225,8 @@
                         {$where}
                         GROUP BY item.id
                         ORDER BY SUM(quantity) {$sort}
+                        {$limit}
                     "
-                        
                 );
             }
 
