@@ -249,13 +249,15 @@
 			$errors = [];
 
 			$user = parent::get(['email' => $email]);
-
+			
 			if(!$user) {
-				$errors[] = " Email '{$email}' does not exists in any account";
+				$this->addError(" Email '{$email}' does not exists in any account");
+				return;
 			}
 
 			if(!isEqual($user->password ?? '' , $password)){
-				$errors[] = " Incorrect Password ";
+				$this->addError(" Email '{$email}' does not exists in any account");
+				return;
 			}
 
 			if(!$user->is_verified) {

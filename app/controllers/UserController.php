@@ -37,6 +37,7 @@
 			_requireAuth();
 			if(isSubmitted()) {
 				$post = request()->posts();
+				$post['is_active'] = true;
 
 				$user_id = $this->model->create($post , 'profile');
 				if(!$user_id){
@@ -54,6 +55,8 @@
 				return redirect( _route('user:show' , $user_id , ['user_id' => $user_id]) );
 			}
 			$this->data['user_form'] = new UserForm('userForm');
+
+			$this->data['user_form']->setValue('user_type', 'staff');
 			$this->data['daysoftheweek'] = dayOfWeeks();
 
 			return $this->view('user/create' , $this->data);

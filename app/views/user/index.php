@@ -15,7 +15,8 @@
 						<th>Name</th>
 						<th>Gender</th>
 						<th>Phone Number</th>
-						<th>Type</th>
+						<th>Email</th>
+						<th>Verification</th>
 						<th>Access</th>
 						<th>Action</th>
 					</thead>
@@ -26,7 +27,8 @@
 								<td><?php echo $row->lastname . ' , ' .$row->firstname?></td>
 								<td><?php echo $row->gender ?></td>
 								<td><?php echo $row->phone ?></td>
-								<td><?php echo $row->user_type ?></td>
+								<td><?php echo $row->email ?></td>
+								<td><?php echo $row->is_verified ? 'VERIFIED' : 'UNVERIFIED' ?></td>
 								<td><?php echo $row->user_access ?></td>
 								<td>
 									<?php 

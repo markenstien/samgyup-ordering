@@ -126,7 +126,7 @@
                                     </div>
                                     <div class="text-center">
                                       <p class="tx-16 fw-bolder"><?php echo $auth->firstname . ' '.$auth->lastname?></p>
-                                      <p class="tx-12 text-muted"><?php echo $auth->user_type ?></p>
+                                      <p class="tx-12 text-muted"><?php echo $auth->user_access ?></p>
                                     </div>
                                   </div>
                                   <ul class="list-unstyled p-1">

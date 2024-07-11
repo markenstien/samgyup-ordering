@@ -30,7 +30,7 @@
 				$post = request()->posts();
 
 				$res = $this->user->authenticate($post['email'] , $post['password']);
-
+				
 				if(!$res) {
 					Flash::set( $this->user->getErrorString() , 'danger');
 					return request()->return();
