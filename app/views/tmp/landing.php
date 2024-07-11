@@ -66,7 +66,7 @@
         <li><a href="<?php echo _route('home:shop')?>" class="smoothScroll">Menu</a></li>
         <li><a href="<?php echo _route('home:reservation')?>" class="smoothScroll">Reservation</a></li>
         <li><a href="#contact" class="smoothScroll">Contact</a></li>
-        <?php if(whoIs()) :?>
+        <?php if(!whoIs()) :?>
         <li><a href="<?php echo _route('auth:login')?>" class="smoothScroll">Login|Register</a></li>
         <?php else :?>
           <li><a href="<?php echo _route('dashboard:index')?>" class="smoothScroll">Dashboard</a></li>
