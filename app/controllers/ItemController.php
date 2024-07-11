@@ -35,7 +35,7 @@
                     Flash::set($this->model->getMessageString());
                     return redirect(_route('item:show',$res));
                 }else{
-                    Flash::set($this->mode->getErrorString(),'danger');
+                    Flash::set($this->model->getErrorString(),'danger');
                     return request()->return();
                 }
             }

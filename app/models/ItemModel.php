@@ -69,11 +69,11 @@
                 ]
             ]);
 
-            if(!$product || ($product && $product->id == $id)) {
-                return false;
-            }
+            // if(!$product || ($product && $product->id == $id)) {
+            //     return false;
+            // }
 
-            return true;
+            return false;
         }
 
          /**
