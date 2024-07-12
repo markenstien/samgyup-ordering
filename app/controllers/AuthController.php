@@ -86,7 +86,9 @@
 					return request()->return();
 				}
 				
-				return $this->requestActivationCode($isOkay);
+				// return $this->requestActivationCode($isOkay);
+				$this->requestActivationCode($isOkay);
+				die();
 			}
 
 			$form = $this->_form;
@@ -106,17 +108,16 @@
 			$user = $this->user->get($userId);
 
 			$this->meta->createVerifyUserCode($userId);
-			$href = URL.DS.'AuthController/code/?action=activate&code='.seal($user->id);
+			$href = URL.DS.'AuthController/code/?action=activate&code='.seal($user->id) . '&token=' . seal($this->meta->_getRetval('id'));
 			$link = "<a href ='{$href}'> Link </a>";
 
 			$emailContent = " Good day <strong>{$user->firstname}</strong>,<br/>";
-			$emailContent .= " You Recieved this email because you used your email to register on ". COMPANY_NAME .'<br/>';
-			$emailContent .= " Verify your registration to enjoy our best meals. <br/></br>";
-			$emailContent .= " Click this {$link} or use this code to activate your account : ==> ".$this->meta->retVal['code'];
+			$emailContent .= " Thank you for registering to our website --> ". COMPANY_NAME .'<br/>';
+			$emailContent .= " Verify your registration to enjoy the perks of our verified customers. <br/></br>";
+			$emailContent .= " Click this {$link} to activate your account ";
 
 			$emailBody = wEmailComplete($emailContent);
 			_mail($user->email, 'ACCOUNT VERIFICATION', $emailBody);
-
 			Flash::set("User has been created, verification link and code has been sent to your email '{$user->email}'");
 			return redirect(_route('auth:login'));
 		}
@@ -126,26 +127,14 @@
 				$post = request()->posts();
 				$code = $post['verification_code'];
 
-				$codeValue = $this->meta->single([
-					'meta_value' => $code
-				]);
+				$isOkay = $this->activateUserUsingCode($code);
 
-				if(!empty($codeValue)) {
-					$isOkay = $this->user->dbHelper->update(...[
-						$this->user->table,
-						['is_verified' => 1],
-						$this->user->conditionConvert([
-							'id' => $codeValue->id
-						])
-					]);
-
-					$this->meta->delete($codeValue->id);
-
-					if($isOkay) {
-						Flash::set("Account Verified");
-						$this->user->startAuth($codeValue->parent_id);
-						return redirect(_route('user:show', $codeValue->parent_id));
-					}
+				if($isOkay) {
+					Flash::set("Account Verified");
+					$userId = Session::get('activateUserUserId');
+					Session::remove('activateUserUserId');
+					$this->user->startAuth($userId);
+					return redirect(_route('user:show', $userId));
 				} else {
 					Flash::set("Request code not exist Action failed", 'danger');
 					return redirect(_route('auth:login'));
@@ -153,8 +142,45 @@
 			}
 
 			if(!empty($req['action']) && !empty($req['code'])) {
-				return $this->view('auth/code');
+				$code = unseal($req['code']);
+				$isOkay = $this->activateUserUsingCode($code);
+
+				$userId = Session::get('activateUserUserId');
+				Session::remove('activateUserUserId');
+				if($isOkay) {
+					Flash::set("Account Verified");
+					$this->user->startAuth($userId);
+					return redirect(_route('user:show', $userId));
+				} else {
+					Flash::set("Request code not exist Action failed", 'danger');
+					return redirect(_route('auth:login'));
+				}
 			}
+		}
+
+		private function activateUserUsingCode($code) {
+			$retVal = false;
+
+			$codeValue = $this->meta->single([
+				'parent_id' => $code
+			]);
+
+			if(!empty($codeValue)) {
+				$userId = $codeValue->parent_id;
+				$isOkay = $this->user->dbHelper->update(...[
+					$this->user->table,
+					['is_verified' => 1],
+					$this->user->conditionConvert([
+						'id' => $userId
+					])
+				]);
+				$this->meta->delete($codeValue->id);
+
+				Session::set('activateUserUserId', $userId);
+				$retVal = true;
+			}
+
+			return $retVal;
 		}
 		
 

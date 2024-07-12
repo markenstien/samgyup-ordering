@@ -5,10 +5,47 @@
 		<div class="card">
 			<div class="card-header">
 				<h4 class="card-title">Appointment Details</h4>
-				<p><?php echo $appointment->reference?></p>
+				<p><?php echo wLinkDefault(_route('appointment:index'), 'Back to Appointments')?></p>
 			</div>
 			<div class="card-body">
-				<?php echo $form->getForm()?>
+			<?php echo $form->start() ?>
+				<div class="row"><div class="form-group mb-4"><?php Form::text('', $appointment->reference,  ['class' => 'form-control', 'readonly' => true])?></div></div>
+				<div class="form-group">
+					<?php echo $form->getRow('guest_name')?>
+				</div>
+
+				<div class="form-group">
+					<?php echo $form->getRow('guest_phone')?>
+				</div>
+
+				<div class="form-group">
+					<?php echo $form->getRow('guest_email', [
+						'attributes' => [
+							'readonly' => true
+						]
+					])?>
+				</div>
+
+				<div class="form-group">
+					<?php echo $form->getRow('date')?>
+				</div>
+
+				<div class="form-group">
+					<?php echo $form->getRow('start_time')?>
+				</div>
+
+				<div class="form-group">
+					<?php echo $form->getRow('notes')?>
+				</div>
+
+				<?php if(isEqual($appointment->status, 'pending')) :?>
+				<div class="form-group">
+					<button type="submit" class="btn btn-primary btn-sm">Reserve</button>
+				</div>
+				<?php else :?>
+					<p><span class="badge bg-danger">Update not allowed</span> : Reservation Status : <?php echo $appointment->status?></p>
+				<?php endif?>
+			<?php echo $form->end() ?>
 			</div>
 		</div>	
 	</div>

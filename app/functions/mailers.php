@@ -1,5 +1,5 @@
 <?php
-
+	
 	function email_tmp($to ,$subject, $message)
 	{
 		$url = URL.DS;
@@ -75,14 +75,14 @@
 	{
 		$mailer = MailMaker::getInstance();
 
-		if(SYSTEM_MODE == 'local' || SYSTEM_MODE == 'dev') {
-			print_r([
-				'email_data' => [
-					'reciever' => $receiver,
-					'subject' => $subject
-				]
-			]);
-		}
+		// if(SYSTEM_MODE == 'local' || SYSTEM_MODE == 'dev') {
+		// 	print_r([
+		// 		'email_data' => [
+		// 			'reciever' => $receiver,
+		// 			'subject' => $subject
+		// 		]
+		// 	]);
+		// }
 		$mailer->setSubject($subject)
 		->setBody($body);
 
@@ -133,8 +133,8 @@
 				}
 			}
 		} else {
-			echo '<div style="margin-top:50px"> </div>';
-			echo $body;
+			// echo '<div style="margin-top:50px"> </div>';
+			// echo $body;
 		}
 	}
 

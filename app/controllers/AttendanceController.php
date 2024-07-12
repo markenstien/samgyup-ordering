@@ -15,6 +15,8 @@ use Services\UserService;
             $this->timelogPlusModel = model('TimelogPlusModel');
 
             $this->data['form'] = $this->form;
+
+            _requireAuth();
         }
 
         public function index() {

@@ -1,9 +1,9 @@
 <?php build('content') ?>
     <div class="card">
         <div class="card-header">
-            <h4 class="card-title">Sales Report</h4>
+            <h4 class="card-title">Stocks Report</h4>
         </div>
-
+        <?php if(!isset($reportData)) :?>
         <div class="card-body">
             <div class="col-md-5">
                 <?php
@@ -18,6 +18,14 @@
                 <?php Form::close()?>
             </div>
         </div>
+
+        <?php else :?>
+            <div class="card">
+                <div class="card-header">
+                    <?php echo wLinkDefault(_route('report:stocks'), 'Complete')?>
+                </div>
+            </div>
+        <?php endif?>
         
         <?php if(isset($reportData)) :?>
             <?php extract($reportData) ?>
@@ -28,107 +36,20 @@
                         <div class="text-center">
                             <h4>STOCK REPORT</h4>
                             <div><small>AS of <?php echo $dateNow?></small></div>
-                            <div>Report Period : <?php echo $request['start_date']?> TO <?php echo $request['end_date']?></div>
-                            <div>Report By : <small><strong><?php echo $displayname?></strong></small></div>
                         </div>
-                    </section>
-                    <section class="summary">
-                        <table class="table table-bordered">
-                            <tr align="center">
-                                <td colspan="5">HIGHEST STOCKS IN LEVEL</td>
-                            </tr>
-                            <tr>
-                                <td>ITEM + SKU</td>
-                                <td>MIN</td>
-                                <td>MAX</td>
-                                <td>STOCKS</td>
-                                <td>LEVEL</td>
-                            </tr>
-                            <?php foreach($highestStockByMaxQuantity as $key => $row) :?>
-                                <tr>
-                                    <td><?php echo "{$row->name} ({$row->sku})"?></td>
-                                    <td><?php echo $row->min_stock?></td>
-                                    <td><?php echo $row->max_stock?></td>
-                                    <td><?php echo $row->total_stock?></td>
-                                    <td><?php echo $row->stock_level?></td>
-                                </tr>
-                            <?php endforeach?>
-                            <tr align="center">
-                                <td colspan="5">LOWEST STOCKS IN LEVEL</td>
-                            </tr>
-                            <tr>
-                                <td>ITEM + SKU</td>
-                                <td>MIN STOCK</td>
-                                <td>MAX STOCK</td>
-                                <td>STOCKS</td>
-                                <td>LEVEL</td>
-                            </tr>
-                            <?php foreach($lowestStockByMaxQuantity as $key => $row) :?>
-                                <tr>
-                                    <td><?php echo "{$row->name} ({$row->sku})"?></td>
-                                    <td><?php echo $row->min_stock?></td>
-                                    <td><?php echo $row->max_stock?></td>
-                                    <td><?php echo $row->total_stock?></td>
-                                    <td><?php echo $row->stock_level?></td>
-                                </tr>
-                            <?php endforeach?>
-
-                            <tr align="center">
-                                <td colspan="5">HIGHEST STOCKS IN QUANTITY</td>
-                            </tr>
-                            <tr>
-                                <td>ITEM + SKU</td>
-                                <td>MIN STOCK</td>
-                                <td>MAX STOCK</td>
-                                <td>STOCKS</td>
-                                <td>LEVEL</td>
-                            </tr>
-
-                            <?php foreach($highestStockByQuantity as $key => $row) :?>
-                                <tr>
-                                    <td><?php echo "{$row->name} ({$row->sku})"?></td>
-                                    <td><?php echo $row->min_stock?></td>
-                                    <td><?php echo $row->max_stock?></td>
-                                    <td><?php echo $row->total_stock?></td>
-                                    <td><?php echo $row->stock_level?></td>
-                                </tr>
-                            <?php endforeach?>
-
-                            <tr align="center">
-                                <td colspan="5">LOWEST STOCKS IN QUANTITY</td>
-                            </tr>
-                            <tr>
-                                <td>ITEM + SKU</td>
-                                <td>MIN STOCK</td>
-                                <td>MAX STOCK</td>
-                                <td>STOCKS</td>
-                                <td>LEVEL</td>
-                            </tr>
-
-                            <?php foreach($lowestStockByQuantity as $key => $row) :?>
-                                <tr>
-                                    <td><?php echo "{$row->name} ({$row->sku})"?></td>
-                                    <td><?php echo $row->min_stock?></td>
-                                    <td><?php echo $row->max_stock?></td>
-                                    <td><?php echo $row->total_stock?></td>
-                                    <td><?php echo $row->stock_level?></td>
-                                </tr>
-                            <?php endforeach?>
-
-                        </tbody>
-                        </table>
                     </section>
 
                     <section class="particular">
                         <h4>Stocks</h4>
                         <?php $totalStock = 0?>
-                        <small>ARRANGED BY HIHEST STOCK LEVEL AND STOCK</small>
                         <table class="table table-bordered">
                             <thead>
                                 <td>ITEM + SKU</td>
                                 <td>MIN</td>
                                 <td>MAX</td>
-                                <td>STOCK</td>
+                                <td><span title="Stock In Total">IN</span></td>
+                                <td><span title="Stock Out Total">OUT</span></td>
+                                <td>On Hand</td>
                                 <td>LEVEL</td>
                             </thead>
 
@@ -139,6 +60,8 @@
                                         <td><?php echo "{$row->name} ({$row->sku})"?></td>
                                         <td><?php echo $row->min_stock?></td>
                                         <td><?php echo $row->max_stock?></td>
+                                        <td><?php echo $row->stock_in_total?></td>
+                                        <td><?php echo $row->stock_out_total?></td>
                                         <td><?php echo $row->total_stock?></td>
                                         <td><?php echo $row->stock_level?></td>
                                     </tr>

@@ -277,7 +277,7 @@
 
                             <?php if($flagAdmin) :?>
                             <li class="nav-item">
-                                <a href="<?php echo _route('report:sales')?>" class="nav-link">
+                                <a href="<?php echo _route('report:index')?>" class="nav-link">
                                     <i class="link-icon" data-feather="film"></i>
                                     <span class="menu-title">Reports</span></a>
                             </li>

@@ -160,6 +160,52 @@
 						]
 					],
 				]);
+
+				$stocksOut = $this->stockModel->getAll([
+					'where' => [
+						'date' => [
+							'condition' => 'between',
+							'value' => [$request['start_date'], $request['end_date']]
+						],
+						'entry_type' => 'DEDUCT'
+					],
+				]);
+
+
+				$stocksIn = $this->stockModel->getAll([
+					'where' => [
+						'date' => [
+							'condition' => 'between',
+							'value' => [$request['start_date'], $request['end_date']]
+						],
+						'entry_type' => 'ADD'
+					],
+				]);
+
+				$stocksOutGrouped = [];
+				$stocksInGrouped = [];
+
+				//summarized
+
+				foreach($stocksOut as $key => $row) {
+					if(!isset($stocksOutGrouped[$row->item_id])) {
+						$stocksOutGrouped[$row->item_id] = 0;
+					} 
+					$stocksOutGrouped[$row->item_id] += $row->quantity;
+				}
+
+				foreach($stocksIn as $key => $row) {
+					if(!isset($stocksInGrouped[$row->item_id])) {
+						$stocksInGrouped[$row->item_id] = 0;
+					} 
+					$stocksInGrouped[$row->item_id] += $row->quantity;
+				}
+
+				foreach($stocks as $key => $row) {
+					$row->stock_in_total = $stocksInGrouped[$row->id] ?? 0;
+					$row->stock_out_total = $stocksOutGrouped[$row->id] ?? 0;
+				}
+
 				$this->data['reportData'] = [
 					'highestStockByMaxQuantity' => $highestStockByMaxQuantity,
 					'highestStockByQuantity'    => $highestStockByQuantity,

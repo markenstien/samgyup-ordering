@@ -27,25 +27,24 @@
     function str_to_mobile($string)
     {
         $mobile = preg_replace("/[^0-9]/", "", trim($string));
-
-        if( substr($mobile , 0 ,2) == '63' || substr($mobile , 0 , 1) == '9' ) {
-            $mobile = '09'.substr( $mobile , 0);
+        $prefix = '63';
+        $checkFor09 = substr($mobile, 0, 2);
+        $checkForNoZero = substr($mobile, 0, 1);
+        if($checkFor09 == '09') {
+            $mobile = $prefix . substr($mobile, 1);
+        } else if($checkForNoZero == '9') {
+            $mobile = $prefix . $mobile;
         }
+
         return $mobile;
     }
+
 
 
     function is_mobile_number($string)
     {
         $mobileNumber = trim($string);
-
-        if(strlen($string) != 11)
-            return false;
-        
-        if( substr($string , 0 ,2)  != '09')
-            return false;
-            
-        return true;
+        return (strlen($mobileNumber) == 11 || strlen($mobileNumber) == 12);
     }
 
     function str_to_email($string)

@@ -114,7 +114,11 @@
 
 		public function reservation() {
 			$this->requireTerms();
-			$this->data['appointmentForm'] = new AppointmentForm();
+
+			$appointmentForm = new AppointmentForm();
+			$appointmentForm->setValue('guest_email', whoIs('email'));
+			
+			$this->data['appointmentForm'] = $appointmentForm;
 			return $this->view('home/reservation', $this->data);
 		}
 

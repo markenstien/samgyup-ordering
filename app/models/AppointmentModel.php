@@ -130,9 +130,11 @@
 		}
 
 		public function approve($id) {
-			return parent::update([
+			$resp = parent::update([
 				'status' => 'arrived'
 			], $id);
+				//email customer
+			return $resp;
 		}
 
 		public function generateRefence()
@@ -223,7 +225,7 @@
 			// 	return false;
 			// }
 
-			$message = "Date is available you are reserved";
+			$message = "Reservation Successful";
 			$this->addMessage($message);
 			return true;
 		}

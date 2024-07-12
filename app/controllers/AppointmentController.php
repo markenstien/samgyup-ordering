@@ -284,7 +284,45 @@
 		public function cancel($id) {
 			$res = $this->model->cancel($id);
 			if($res) {
-				Flash::set('Reservation has been cancelled');
+				$message = 'Reservation has been cancelled';
+				
+				$appointment = $this->model->single($id);
+				$emailContent = <<<EOF
+					<p> Your reservation #{$appointment->reference} has been cancelled. </p>
+					<h3> Reservation Details </h3>
+					<ul> 
+						<li>Date : {$appointment->date}</li>
+						<li>Time : {$appointment->start_time}</li>
+						<li>Guest Name : {$appointment->guest_name}</li>
+						<li>Guest Email : {$appointment->guest_email}</li>
+						<li>Guest Phone : {$appointment->guest_phone}</li>
+						<li>Notes : {$appointment->notes}</li>
+					</ul>
+					<h3> RESERVATION CANCELLED </h3>
+				EOF;
+				$emailBody = wEmailComplete($emailContent);
+				_mail($appointment->guest_email, 'Reservation Notification', $emailBody);
+				$strToMobile = str_to_mobile($appointment->guest_phone);
+
+				if(is_mobile_number($strToMobile)) {
+					$resp = _sms_instance("Appointment has been cancelled #{$appointment->reference}", $strToMobile);
+					$message .= "An sms has been sent to the user";
+
+					$companyName = COMPANY_NAME;
+					$appointmentTextMessage = "
+						Your booking at {$companyName} has been cancelled for {$appointment->date}
+						at {$appointment->start_time} appointment Reference : #{$appointment->reference}. 
+						for any inquiries feel free to contact us.
+						Thank you for choosing {$companyName} !!
+					";
+					$resp = _sms_instance($appointmentTextMessage, $strToMobile);
+					$message .= "An sms has been sent to the user";
+					
+				} else {
+					$message .= " Unable to send message to owner, Invalid Mobile Number";
+				}
+				
+				Flash::set($message);
 			}
 
 			return request()->return();
@@ -292,8 +330,41 @@
 
 		public function approve($id) {
 			$res = $this->model->approve($id);
-			if($res) {
-				Flash::set('Reservation arrived');
+			if(true) {
+				$message = 'Reservation updated to arrive successfull';
+				$appointment = $this->model->single($id);
+				$emailContent = <<<EOF
+					<p> Your reservation #{$appointment->reference} has been approved. </p>
+					<h3> Reservation Details </h3>
+					<ul> 
+						<li>Date : {$appointment->date}</li>
+						<li>Time : {$appointment->start_time}</li>
+						<li>Guest Name : {$appointment->guest_name}</li>
+						<li>Guest Email : {$appointment->guest_email}</li>
+						<li>Guest Phone : {$appointment->guest_phone}</li>
+						<li>Notes : {$appointment->notes}</li>
+					</ul>
+				EOF;
+				$emailBody = wEmailComplete($emailContent);
+				// _mail($appointment->guest_email, 'Reservation Notification', $emailBody);
+				$strToMobile = str_to_mobile($appointment->guest_phone);
+				
+				if(is_mobile_number($strToMobile)) {
+					$companyName = COMPANY_NAME;
+					$appointmentTextMessage = "
+						Your booking at {$companyName} is confirmed for {$appointment->date}
+						at {$appointment->start_time} appointment Reference : #{$appointment->reference}. 
+						Please Arrive 10 minutes befoer
+						your scheduled time. For any changes, feel free to contact us.
+						Thank you for choosing {$companyName} !!
+					";
+					$resp = _sms_instance($appointmentTextMessage, $strToMobile);
+					$message .= "An sms has been sent to the user";
+				} else {
+					$message .= " Unable to send message to owner, Invalid Mobile Number";
+				}
+
+				Flash::set($message);
 			}
 
 			return request()->return();

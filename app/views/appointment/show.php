@@ -5,6 +5,7 @@
 			<div class="card">
 				<div class="card-header">
 					<h4 class="card-title">Reservation Preview</h4>
+					<?php echo wLinkDefault(_route('appointment:index'), 'Back to Reservation')?>
 				</div>
 
 				<div class="card-body">
@@ -63,7 +64,9 @@
 				</div>
 				<div class="card-footer">
 					<?php if(isEqual($appointment->status, ['pending', 'scheduled'])) :?>
-						<a href="<?php echo _route('appointment:approve', $appointment->id)?>" class="btn btn-primary btn-lg">Arrived</a>
+						<?php if(isEqual(whoIs('user_type'), 'staff')) :?>
+							<a href="<?php echo _route('appointment:approve', $appointment->id)?>" class="btn btn-primary btn-lg">Arrived</a>
+						<?php endif?>
 						<a href="<?php echo _route('appointment:cancel', $appointment->id)?>" class="btn btn-danger btn-lg">Cancelled</a>
 					<?php endif?>
 				</div>

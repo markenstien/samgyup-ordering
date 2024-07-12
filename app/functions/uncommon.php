@@ -388,3 +388,22 @@
 
         return $retVal;
     }
+
+
+    function _sms_instance($message, $number) {
+		require_once LIBS.DS.'sms/vendor/autoload.php';
+		$basic = new Vonage\Client\Credentials\Basic("07b2acf9", "YQgIa7x91wNlEbPZ");
+		$client = new \Vonage\Client($basic);
+
+        $response = $client->sms()->send(
+            new \Vonage\SMS\Message\SMS($number, 'DAILYGRILL', $message)
+        );
+
+        $message = $response->current();
+
+        if ($message->getStatus() == 0) {
+            return true;
+        } else {
+            return false;
+        }
+	}

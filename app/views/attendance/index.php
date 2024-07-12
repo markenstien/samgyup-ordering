@@ -3,7 +3,7 @@
         <div class="card">
             <?php echo wCardHeader(wCardTitle('Attendance'))?>
             <div class="card-body">
-                <?php if(isEqual(whoIs('user_access'), 'admin')) :?>
+                <?php if(isEqual(whoIs('user_access'), ['admin'])) :?>
                 <div style="text-align: right;" class="mb-3">
                     <a href="<?php echo _route('attendance:approval')?>" class="btn btn-warning btn-sm">Approvals</a>
                     <a href="<?php echo _route('attendance:logged-in')?>" class="btn btn-warning btn-sm">Logged In</a>

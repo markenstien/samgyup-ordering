@@ -5,7 +5,7 @@
 
 <div class="container py-5">
     <div class="col-md-6 mx-auto">
-        <h3>Reserve a table</h3>
+        <h3 style="color: #fff;">Reserve a table</h3>
         <?php Flash::show() ?>
         <?php echo $appointmentForm->start() ?>
             <div class="form-group">
@@ -17,7 +17,11 @@
             </div>
 
             <div class="form-group">
-                <?php echo $appointmentForm->getRow('guest_email')?>
+                <?php echo $appointmentForm->getRow('guest_email', [
+                    'attributes' => [
+                        'readonly' => true
+                    ]
+                ])?>
             </div>
 
             <div class="form-group">
@@ -45,4 +49,5 @@
 </div>
 <?php echo wDivider(100)?>
 <?php endbuild()?>
+
 <?php loadTo('tmp/landing')?>
