@@ -23,7 +23,7 @@
                                     <td><?php echo $row->fullname?></td>
                                     <td><span class="clockIn" data-target="<?php echo $rowId?>"><?php echo $row->clock_in?></span></td>
                                     <td><span class="duration" id="<?php echo $rowId?>"></span></td>
-                                    <td><?php echo wLinkDefault(_route('attendance:log'), 'Clock Out')?></td>
+                                    <td><?php echo wLinkDefault(_route('attendance:log', $row->user_id), 'Clock Out')?></td>
                                 </tr>
                             <?php endforeach?>
                         </tbody>
