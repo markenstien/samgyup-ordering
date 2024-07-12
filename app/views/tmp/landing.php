@@ -106,7 +106,7 @@
 
 
 <!-- Feature section -->
-<section id="feature" class="parallax-section">
+<section id="feature" class="parallax-section" style="display: none;">
   <div class="container">
     <div class="row">
 
